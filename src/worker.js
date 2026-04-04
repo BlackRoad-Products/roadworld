@@ -6,8 +6,8 @@ const ROOT_HTML = `<!-- PROPRIETARY. Copyright 2025-2026 BlackRoad OS, Inc. All 
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>RoadWorld — BlackRoad OS</title>
-<meta name="description" content="RoadWorld — Game Engine. Part of BlackRoad OS.">
-<meta property="og:title" content="RoadWorld — BlackRoad OS"><meta property="og:description" content="Build worlds. Play forever.">
+<meta name="description" content="Build games and virtual worlds in the browser. Drag-and-drop creation, 8 templates, NPC agents, multiplayer. No code required. Earn RoadCoin when others play.">
+<meta property="og:title" content="RoadWorld — Browser Game Builder — BlackRoad OS"><meta property="og:description" content="Build games and virtual worlds in the browser. Drag-and-drop, templates, NPC agents, multiplayer. No code required.">
 <meta property="og:url" content="https://roadworld.blackroad.io"><meta property="og:image" content="https://images.blackroad.io/pixel-art/road-logo.png">
 <meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow, noai, noimageai">
 <link rel="canonical" href="https://roadworld.blackroad.io/">
@@ -793,6 +793,7 @@ export default {
     const method = request.method;
 
     if (path === "/" || path === "") return new Response(ROOT_HTML, { headers: { ...CORS, "Content-Type": "text/html;charset=UTF-8" } });
+    if (path === '/sitemap.xml') return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://roadworld.blackroad.io/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>\n</urlset>`, { headers: { 'Content-Type': 'application/xml', ...CORS } });
     if (!dbReady) { await ensureTables(env.DB); dbReady = true; }
 
     // Health
