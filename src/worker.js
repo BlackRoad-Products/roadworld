@@ -2871,6 +2871,8 @@ export default {
     // Browse auctions
     if (worldAuctionMatch && method === 'GET') {
       const worldId = worldAuctionMatch[1];
+      // Auto-close expired auctions
+      await env.DB.prepare("UPDATE rw_auctions SET status = 'ended' WHERE world_id = ? AND status = 'active' AND expires_at < datetime('now')").bind(worldId).run();
       const search = url.searchParams.get('search');
       const rarity = url.searchParams.get('rarity');
       const sort = url.searchParams.get('sort') || 'newest';
@@ -2983,12 +2985,14 @@ export default {
           .bind(auction.current_bid, auction.current_bidder).run();
       }
 
-      // Deduct from buyer, pay seller
+      // Deduct from buyer, pay seller (5% tax burned as economy sink)
+      const tax = Math.round(auction.buyout_price * 0.05 * 100) / 100;
+      const sellerPayout = auction.buyout_price - tax;
       await env.DB.prepare("UPDATE rw_economy SET balance = balance - ?, total_spent = total_spent + ?, updated_at = datetime('now') WHERE player = ?")
         .bind(auction.buyout_price, auction.buyout_price, body.buyer).run();
       await ensurePlayerEconomy(env.DB, auction.seller);
       await env.DB.prepare("UPDATE rw_economy SET balance = balance + ?, total_earned = total_earned + ?, updated_at = datetime('now') WHERE player = ?")
-        .bind(auction.buyout_price, auction.buyout_price, auction.seller).run();
+        .bind(sellerPayout, sellerPayout, auction.seller).run();
 
       // Transfer item to buyer
       await env.DB.prepare('INSERT INTO rw_inventory (id, player, world_id, item_name, item_type, quantity, rarity, properties) VALUES (?, ?, ?, ?, ?, ?, ?, ?)')
@@ -3082,6 +3086,71 @@ export default {
         available_categories: ['all', 'players', 'worlds', 'economy', 'achievements', 'pets', 'factions', 'builders'],
         timestamp: new Date().toISOString(),
       });
+    }
+
+    // ─── Trending (most played in 7 days) ───
+    if (path === '/api/discover/trending' && method === 'GET') {
+      const result = await env.DB.prepare(
+        "SELECT id, name, description, owner, template, plays, rating_sum, rating_count, created_at FROM rw_worlds WHERE is_published = 1 AND created_at >= datetime('now', '-7 days') ORDER BY plays DESC LIMIT 20"
+      ).all();
+      let trending = result.results || [];
+      if (trending.length < 5) {
+        const allTime = await env.DB.prepare(
+          "SELECT id, name, description, owner, template, plays, rating_sum, rating_count, created_at FROM rw_worlds WHERE is_published = 1 ORDER BY plays DESC LIMIT 20"
+        ).all();
+        trending = allTime.results || [];
+      }
+      return json({ trending: trending.map(w => ({ ...w, avg_rating: w.rating_count > 0 ? Math.round(w.rating_sum / w.rating_count * 10) / 10 : null })) });
+    }
+
+    // ─── Rate a world ───
+    const rateMatch = path.match(/^\/api\/worlds\/([^/]+)\/rate$/);
+    if (rateMatch && method === 'POST') {
+      const body = await request.json();
+      const score = Math.min(5, Math.max(1, parseInt(body.score) || 3));
+      const playerId = body.player_id || 'anonymous';
+      const world = await env.DB.prepare('SELECT id FROM rw_worlds WHERE id = ?').bind(rateMatch[1]).first();
+      if (!world) return json({ error: 'World not found' }, 404);
+      await env.DB.prepare('UPDATE rw_worlds SET rating_sum = COALESCE(rating_sum, 0) + ?, rating_count = COALESCE(rating_count, 0) + 1 WHERE id = ?').bind(score, rateMatch[1]).run();
+      return json({ ok: true, world_id: rateMatch[1], score, player: playerId });
+    }
+
+    // ─── Invite collaborator ───
+    const inviteMatch = path.match(/^\/api\/worlds\/([^/]+)\/invite$/);
+    if (inviteMatch && method === 'POST') {
+      const body = await request.json();
+      if (!body.user_id) return json({ error: 'user_id required' }, 400);
+      const world = await env.DB.prepare('SELECT id, owner FROM rw_worlds WHERE id = ?').bind(inviteMatch[1]).first();
+      if (!world) return json({ error: 'World not found' }, 404);
+      return json({ ok: true, world_id: inviteMatch[1], invited: body.user_id, role: body.role || 'editor' }, 201);
+    }
+
+    // ─── Soft delete world ───
+    const deleteWorldMatch = path.match(/^\/api\/worlds\/([^/]+)$/);
+    if (deleteWorldMatch && method === 'DELETE') {
+      const world = await env.DB.prepare('SELECT id FROM rw_worlds WHERE id = ?').bind(deleteWorldMatch[1]).first();
+      if (!world) return json({ error: 'World not found' }, 404);
+      await env.DB.prepare("UPDATE rw_worlds SET is_published = 0, name = name || ' [DELETED]' WHERE id = ?").bind(deleteWorldMatch[1]).run();
+      return json({ ok: true, deleted: deleteWorldMatch[1] });
+    }
+
+    // ─── Remove object from world ───
+    const removeObjMatch = path.match(/^\/api\/worlds\/([^/]+)\/objects\/([^/]+)$/);
+    if (removeObjMatch && method === 'DELETE') {
+      await env.DB.prepare('DELETE FROM rw_objects WHERE id = ? AND world_id = ?').bind(removeObjMatch[2], removeObjMatch[1]).run();
+      return json({ ok: true, removed: removeObjMatch[2] });
+    }
+
+    // ─── Earnings from games ───
+    if (path === '/api/earnings' && method === 'GET') {
+      const owner = url.searchParams.get('owner') || 'all';
+      let query = "SELECT w.id, w.name, w.plays, w.plays * 0.1 as roadcoin_earned FROM rw_worlds w WHERE w.is_published = 1";
+      const params = [];
+      if (owner !== 'all') { query += ' AND w.owner = ?'; params.push(owner); }
+      query += ' ORDER BY w.plays DESC LIMIT 50';
+      const result = await env.DB.prepare(query).bind(...params).all();
+      const total = (result.results || []).reduce((s, w) => s + (w.roadcoin_earned || 0), 0);
+      return json({ earnings: result.results || [], total_roadcoin: Math.round(total * 100) / 100 });
     }
 
     return json({ error: 'Not found', service: 'roadworld' }, 404);

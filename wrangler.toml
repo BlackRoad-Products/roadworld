@@ -1,0 +1,15 @@
+name = "roadworld-blackroad"
+main = "src/worker.js"
+compatibility_date = "2026-03-31"
+
+[ai]
+binding = "AI"
+
+[[routes]]
+pattern = "roadworld.blackroad.io/*"
+zone_name = "blackroad.io"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "roadworld"
+database_id = "b308ecbd-0cf3-4a99-a96c-1dacb2daa205"
