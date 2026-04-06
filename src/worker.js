@@ -17,33 +17,448 @@ const ROOT_HTML = `<!-- PROPRIETARY. Copyright 2025-2026 BlackRoad OS, Inc. All 
 <style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#000;--card:#0a0a0a;--border:#1a1a1a;--text:#f5f5f5;--sub:#737373;--muted:#444;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace;--in:'Inter',sans-serif;--grad:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--accent:#9C27B0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sg);overflow-x:hidden}a{color:inherit;text-decoration:none}.bar{height:3px;background:var(--grad);position:fixed;top:0;left:0;right:0;z-index:1000}nav{position:fixed;top:3px;left:0;right:0;z-index:999;background:rgba(0,0,0,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:48px;display:flex;align-items:center;padding:0 24px}.n-left{display:flex;align-items:center;gap:8px}.n-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}.n-name{font-weight:700;font-size:15px}.n-tag{font-family:var(--jb);font-size:10px;color:var(--muted);margin-left:8px}.n-right{margin-left:auto;display:flex;gap:12px;align-items:center}.n-right a{font-family:var(--in);font-size:12px;color:var(--sub)}.n-right a:hover{color:var(--text)}.cta{font-size:11px;font-weight:600;padding:6px 16px;border-radius:5px;background:var(--text);color:var(--bg);border:none;cursor:pointer;font-family:var(--sg)}.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.1}h1{font-size:clamp(32px,7vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1.05;max-width:700px;margin-bottom:12px;position:relative}.sub{font-family:var(--in);font-size:clamp(14px,2vw,17px);color:var(--sub);max-width:500px;line-height:1.6;margin-bottom:32px;position:relative}.badge{font-family:var(--jb);font-size:10px;color:var(--sub);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;position:relative;display:flex;align-items:center;gap:8px}.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:p 2s infinite}@keyframes p{0%,100%{opacity:1}50%{opacity:.3}}.btns{display:flex;gap:10px;position:relative;flex-wrap:wrap;justify-content:center}.btn-p{padding:11px 28px;border-radius:7px;font-size:13px;font-weight:600;background:var(--text);color:var(--bg);border:none;cursor:pointer;font-family:var(--sg)}.btn-g{padding:11px 28px;border-radius:7px;font-size:13px;font-weight:600;background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;font-family:var(--sg)}.btn-g:hover{border-color:#444}.section{max-width:900px;margin:0 auto;padding:48px 24px}.status{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:14px 18px;display:flex;align-items:center;gap:10px;margin-bottom:24px}.status-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:p 2s infinite}.status-text{font-family:var(--jb);font-size:11px;color:var(--sub)}.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}.feature-card{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:20px}.feature-card h3{font-size:14px;margin-bottom:6px;font-weight:600}.feature-card p{font-family:var(--in);font-size:12px;color:var(--sub);line-height:1.5}.feature-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px}.live-panel{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:20px;margin-top:16px}.live-panel h2{font-size:16px;margin-bottom:12px;font-weight:600}.live-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}.live-row:last-child{border-bottom:none}.live-label{color:var(--sub);font-family:var(--in)}.live-val{font-family:var(--jb);font-weight:600}footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center}.f-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:12px}.f-links a{font-family:var(--in);font-size:11px;color:var(--sub)}.f-links a:hover{color:var(--text)}.f-copy{font-family:var(--jb);font-size:9px;color:var(--muted)}@media(max-width:768px){nav{padding:0 16px}.feature-grid{grid-template-columns:1fr}}</style></head><body>
 <div class="bar"></div>
 <nav><div class="n-left"><div class="n-dot"></div><span class="n-name">RoadWorld</span><span class="n-tag">BLACKROAD OS</span></div><div class="n-right"><a href="https://blackroad.io">Highway</a><a href="https://app.blackroad.io" class="cta">Open OS</a></div></nav>
-<section class="hero"><div class="orb" style="width:400px;height:400px;background:#9C27B0;top:-10%;left:-15%"></div><div class="orb" style="width:300px;height:300px;background:#8844FF;bottom:-5%;right:-10%"></div><div class="badge">LIVE ON BLACKROAD OS</div><h1>Build worlds. Play forever.</h1><p class="sub">Game Engine with NPCs, Quests, Inventory, Economy, and Live Chat. Part of BlackRoad OS — 17 products, one highway.</p><div class="btns"><a href="https://app.blackroad.io"><button class="btn-p">Open BlackRoad OS</button></a><a href="https://blackroad.io"><button class="btn-g">The Highway</button></a></div></section>
+<section class="hero"><div class="orb" style="width:400px;height:400px;background:#9C27B0;top:-10%;left:-15%"></div><div class="orb" style="width:300px;height:300px;background:#8844FF;bottom:-5%;right:-10%"></div><div class="badge">LIVE ON BLACKROAD OS</div><h1>Build worlds. Play forever.</h1><p class="sub">16 game systems. Skills, factions, pets, quests, economy. Play now.</p><div class="btns"><button class="btn-p" onclick="showGame()">Play Now</button><button class="btn-g" onclick="showBuilder()">Build a World</button></div></section>
+
+<!-- GAME CLIENT -->
+<div id="game" style="display:none;min-height:100vh;padding:60px 0 0">
+<div style="max-width:900px;margin:0 auto;padding:0 16px">
+
+<!-- Player HUD -->
+<div id="hud" style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+  <div class="feature-card" style="flex:1;min-width:200px;padding:14px">
+    <div style="font-size:10px;color:var(--sub);font-family:var(--jb);margin-bottom:4px">PLAYER</div>
+    <div id="p-name" style="font-size:16px;font-weight:700">Adventurer</div>
+    <div id="p-level" style="font-size:11px;color:var(--sub)">Level 1 | 0 XP</div>
+    <div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden"><div id="p-xp-bar" style="height:100%;background:var(--grad);width:0%;border-radius:2px;transition:width .3s"></div></div>
+  </div>
+  <div class="feature-card" style="flex:1;min-width:140px;padding:14px">
+    <div style="font-size:10px;color:var(--sub);font-family:var(--jb);margin-bottom:4px">STATS</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px">
+      <span style="color:var(--sub)">HP</span><span id="p-hp" style="font-family:var(--jb);color:#22c55e">100/100</span>
+      <span style="color:var(--sub)">ATK</span><span id="p-atk" style="font-family:var(--jb);color:#FF2255">10</span>
+      <span style="color:var(--sub)">DEF</span><span id="p-def" style="font-family:var(--jb);color:#4488FF">5</span>
+      <span style="color:var(--sub)">ROAD</span><span id="p-road" style="font-family:var(--jb);color:#F5A623">0</span>
+    </div>
+  </div>
+  <div class="feature-card" style="flex:1;min-width:140px;padding:14px">
+    <div style="font-size:10px;color:var(--sub);font-family:var(--jb);margin-bottom:4px">FACTION</div>
+    <div id="p-faction" style="font-size:13px;font-weight:600;color:var(--sub)">None</div>
+    <div id="p-faction-motto" style="font-size:10px;color:var(--muted);font-style:italic;margin-top:2px"></div>
+    <div id="faction-join" style="margin-top:6px"></div>
+  </div>
+</div>
+
+<!-- Tab navigation -->
+<div style="display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:16px">
+  <button class="gtab active" data-gt="explore" onclick="gameTab('explore')">Explore</button>
+  <button class="gtab" data-gt="skills" onclick="gameTab('skills')">Skills</button>
+  <button class="gtab" data-gt="quests" onclick="gameTab('quests')">Quests</button>
+  <button class="gtab" data-gt="inventory" onclick="gameTab('inventory')">Inventory</button>
+  <button class="gtab" data-gt="pets" onclick="gameTab('pets')">Pets</button>
+  <button class="gtab" data-gt="achievements" onclick="gameTab('achievements')">Achievements</button>
+  <button class="gtab" data-gt="worlds" onclick="gameTab('worlds')">Worlds</button>
+</div>
+
+<!-- Tab content -->
+<div id="gt-explore" class="gt-panel"></div>
+<div id="gt-skills" class="gt-panel" style="display:none"></div>
+<div id="gt-quests" class="gt-panel" style="display:none"></div>
+<div id="gt-inventory" class="gt-panel" style="display:none"></div>
+<div id="gt-pets" class="gt-panel" style="display:none"></div>
+<div id="gt-achievements" class="gt-panel" style="display:none"></div>
+<div id="gt-worlds" class="gt-panel" style="display:none"></div>
+
+<!-- Game log -->
+<div id="game-log" style="border:1px solid var(--border);border-radius:8px;background:var(--card);margin-top:16px;max-height:200px;overflow-y:auto;padding:12px;font-family:var(--jb);font-size:11px;color:var(--sub)"></div>
+</div>
+</div>
+
+<!-- BUILDER PLACEHOLDER -->
+<div id="builder" style="display:none;min-height:100vh;padding:80px 24px">
+  <div style="max-width:600px;margin:0 auto;text-align:center">
+    <h2 style="font-size:24px;margin-bottom:12px">World Builder</h2>
+    <p style="color:var(--sub);margin-bottom:24px">Create a world from a template, then add objects, NPCs, and quests.</p>
+    <div id="templates-grid" class="feature-grid"></div>
+  </div>
+</div>
+
 <section class="section">
 <div class="status"><div class="status-dot"></div><div class="status-text" id="st">Connecting...</div></div>
-<div class="feature-grid">
-<div class="feature-card"><div class="feature-icon" style="background:#1a1a2e">&#x1F30D;</div><h3>World Builder</h3><p>Create worlds from 8 templates. Place objects, wire logic, publish games. AI-generated descriptions.</p></div>
-<div class="feature-card"><div class="feature-icon" style="background:#1a2e1a">&#x1F9D9;</div><h3>NPC System</h3><p>AI-powered NPCs with personalities, dialog trees, and dynamic behavior. Bring your worlds to life.</p></div>
-<div class="feature-card"><div class="feature-icon" style="background:#2e1a1a">&#x2694;</div><h3>Quest Engine</h3><p>Create quests with objectives, rewards, and branching paths. Earn RoadCoin for completing challenges.</p></div>
-<div class="feature-card"><div class="feature-icon" style="background:#1a1a2e">&#x1F392;</div><h3>Inventory + Crafting</h3><p>Collect items, craft gear, trade with other players. Full item economy with rarity tiers.</p></div>
-<div class="feature-card"><div class="feature-icon" style="background:#2e2e1a">&#x1F4AC;</div><h3>World Chat</h3><p>Talk to other players in-world. Chat stays local to each world for immersive multiplayer.</p></div>
-<div class="feature-card"><div class="feature-icon" style="background:#1a2e2e">&#x26C5;</div><h3>Weather + Day/Night</h3><p>Dynamic environment with weather effects, day/night cycle, seasons, and atmospheric conditions.</p></div>
-<div class="feature-card"><div class="feature-icon" style="background:#2e1a2e">&#x1F3C6;</div><h3>Achievements</h3><p>Unlock achievements for milestones. Track progress, earn badges, and compare with the leaderboard.</p></div>
-<div class="feature-card"><div class="feature-icon" style="background:#2e2e1a">&#x1FA99;</div><h3>RoadCoin Economy</h3><p>Earn ROAD for quests, trading, achievements. Spend on items, upgrades, and world customization.</p></div>
-</div>
 <div class="live-panel"><h2>Live Stats</h2><div id="live-stats"><div class="live-row"><span class="live-label">Loading...</span></div></div></div>
 </section>
 <footer><div class="f-links"><a href="https://os.blackroad.io">OS</a><a href="https://roadtrip.blackroad.io">Agents</a><a href="https://roadie.blackroad.io">Tutor</a><a href="https://roadview.blackroad.io">Search</a><a href="https://backroad.blackroad.io">Social</a><a href="https://roadchain.blackroad.io">Chain</a><a href="https://github.com/BlackRoadOS">GitHub</a></div><div class="f-copy">2025-2026 BlackRoad OS, Inc. Remember the Road. Pave Tomorrow.</div></footer>
+<style>
+.gtab{flex:1;padding:10px 12px;font-size:12px;font-weight:500;color:var(--sub);background:var(--card);border:none;cursor:pointer;font-family:var(--sg);transition:all .15s;border-right:1px solid var(--border)}
+.gtab:last-child{border-right:none}
+.gtab:hover{color:var(--text);background:var(--bg)}
+.gtab.active{color:var(--text);background:var(--bg);font-weight:600}
+.skill-card{border:1px solid var(--border);border-radius:6px;background:var(--card);padding:12px;cursor:pointer;transition:border-color .15s}
+.skill-card:hover{border-color:#8844FF}
+.skill-card.locked{opacity:.4}
+.skill-card.learned{border-color:#22c55e}
+.ach-card{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:6px;background:var(--card)}
+.ach-card.earned{border-color:#F5A623}
+.ach-icon{width:36px;height:36px;border-radius:8px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.ach-card.earned .ach-icon{background:rgba(245,166,35,.1);border-color:#F5A623}
+.pet-card{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:16px;text-align:center;cursor:pointer;transition:border-color .15s}
+.pet-card:hover{border-color:#CC00AA}
+.pet-sprite{font-size:32px;margin-bottom:8px}
+.explore-tile{width:48px;height:48px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:transform .1s;border:1px solid transparent}
+.explore-tile:hover{transform:scale(1.1);border-color:rgba(255,255,255,.1)}
+.explore-tile.player{border:2px solid #FF2255;background:rgba(255,34,85,.1)}
+</style>
 <script>
-fetch('/api/health').then(r=>r.json()).then(d=>{document.getElementById('st').textContent='RoadWorld is live — '+d.systems_online+' systems online'}).catch(()=>{document.getElementById('st').textContent='RoadWorld is running'});
-fetch('/api/stats').then(r=>r.json()).then(d=>{
-  const el=document.getElementById('live-stats');
+// ── Game State (localStorage persisted) ──
+var GS;
+try { GS = JSON.parse(localStorage.getItem('rw-save')) || null; } catch(e){ GS=null; }
+if(!GS) GS = {name:'Adventurer',level:1,xp:0,hp:100,maxHp:100,atk:10,def:5,road:0,faction:null,skills:[],inventory:[],pets:[],achievements:[],pos:{x:4,y:4},world:'overworld'};
+function saveGame(){ try{localStorage.setItem('rw-save',JSON.stringify(GS))}catch(e){} }
+
+// ── Game Log ──
+function glog(msg,color){
+  var el=document.getElementById('game-log');
+  if(!el)return;
+  var d=document.createElement('div');
+  d.style.color=color||'var(--sub)';
+  d.textContent='> '+msg;
+  el.appendChild(d);
+  el.scrollTop=el.scrollHeight;
+}
+
+// ── Update HUD ──
+function updateHUD(){
+  document.getElementById('p-name').textContent=GS.name;
+  document.getElementById('p-level').textContent='Level '+GS.level+' | '+GS.xp+' XP';
+  document.getElementById('p-xp-bar').style.width=Math.min(100,Math.round((GS.xp%100)))+'%';
+  document.getElementById('p-hp').textContent=GS.hp+'/'+GS.maxHp;
+  document.getElementById('p-atk').textContent=GS.atk;
+  document.getElementById('p-def').textContent=GS.def;
+  document.getElementById('p-road').textContent=GS.road.toFixed(1);
+  document.getElementById('p-faction').textContent=GS.faction?GS.faction.name:'None';
+  document.getElementById('p-faction-motto').textContent=GS.faction?GS.faction.motto:'Join a faction for bonuses';
+  saveGame();
+}
+
+// ── Tab switching ──
+function gameTab(id){
+  document.querySelectorAll('.gtab').forEach(function(t){t.classList.toggle('active',t.dataset.gt===id)});
+  document.querySelectorAll('.gt-panel').forEach(function(p){p.style.display='none'});
+  document.getElementById('gt-'+id).style.display='';
+  if(id==='skills') loadSkills();
+  if(id==='achievements') loadAchievements();
+  if(id==='pets') loadPets();
+  if(id==='explore') renderMap();
+  if(id==='quests') loadQuests();
+  if(id==='inventory') renderInventory();
+  if(id==='worlds') loadWorlds();
+}
+
+// ── EXPLORE TAB — tile-based map ──
+var MAP_SIZE=10;
+var MAP_TILES=[
+  '&#127794;','&#127795;','&#127793;','&#9968;','&#127806;','&#128567;','&#9962;','&#128176;','&#128142;','&#9876;',
+  '&#127794;','&#127794;','&#127795;','&#127793;','&#127794;','&#127795;','&#127793;','&#127794;','&#127795;','&#127793;'
+];
+function renderMap(){
+  var el=document.getElementById('gt-explore');
+  var html='<div style="margin-bottom:12px;display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:600">Overworld</span><span style="font-size:11px;color:var(--sub)">Use arrow keys or click to move. Step on tiles to discover items.</span></div>';
+  html+='<div style="display:grid;grid-template-columns:repeat('+MAP_SIZE+',48px);gap:2px;margin-bottom:16px">';
+  for(var my=0;my<MAP_SIZE;my++){
+    for(var mx=0;mx<MAP_SIZE;mx++){
+      var isPlayer=mx===GS.pos.x&&my===GS.pos.y;
+      var seed=(mx*7+my*13)%MAP_TILES.length;
+      var tile=isPlayer?'&#129489;':MAP_TILES[seed];
+      html+='<div class="explore-tile'+(isPlayer?' player':'')+'" onclick="movePlayer('+mx+','+my+')" style="background:'+(isPlayer?'rgba(255,34,85,.05)':'var(--card)')+'" data-x="'+mx+'" data-y="'+my+'">'+tile+'</div>';
+    }
+  }
+  html+='</div>';
+  html+='<div style="display:flex;gap:8px"><button class="btn-g" onclick="exploreAction()" style="font-size:12px;padding:8px 16px">Search Area</button><button class="btn-g" onclick="restAction()" style="font-size:12px;padding:8px 16px">Rest (+20 HP)</button><button class="btn-g" onclick="fightAction()" style="font-size:12px;padding:8px 16px">Fight Monster</button></div>';
+  el.innerHTML=html;
+}
+function movePlayer(x,y){
+  if(Math.abs(x-GS.pos.x)+Math.abs(y-GS.pos.y)>2){glog('Too far! Move to adjacent tiles.','#FF2255');return;}
+  GS.pos.x=x;GS.pos.y=y;
+  GS.xp+=1;
+  checkLevelUp();
+  glog('Moved to ('+x+','+y+')');
+  renderMap();updateHUD();
+}
+function exploreAction(){
+  var roll=Math.random();
+  if(roll<.3){var coins=Math.round(Math.random()*5+1)/10;GS.road+=coins;glog('Found '+coins+' ROAD!','#F5A623');}
+  else if(roll<.5){GS.xp+=5;glog('Discovered a hidden path! +5 XP','#22c55e');}
+  else if(roll<.65){var item={name:['Iron Sword','Leather Shield','Health Potion','Map Fragment','Ancient Rune'][Math.floor(Math.random()*5)],rarity:['common','uncommon','rare'][Math.floor(Math.random()*3)]};GS.inventory.push(item);glog('Found: '+item.name+' ('+item.rarity+')','#8844FF');}
+  else{glog('Nothing here. Keep exploring.','var(--muted)');}
+  GS.xp+=2;checkLevelUp();updateHUD();
+}
+function restAction(){
+  GS.hp=Math.min(GS.maxHp,GS.hp+20);
+  glog('Rested. HP restored to '+GS.hp+'/'+GS.maxHp,'#22c55e');
+  updateHUD();
+}
+function fightAction(){
+  var monster={name:['Slime','Goblin','Wolf','Bandit','Dark Knight'][Math.floor(Math.random()*5)],hp:10+GS.level*5,atk:3+GS.level*2};
+  glog('A wild '+monster.name+' appears! (HP:'+monster.hp+' ATK:'+monster.atk+')','#FF2255');
+  // Simple combat
+  while(monster.hp>0&&GS.hp>0){
+    var dmg=Math.max(1,GS.atk-Math.floor(Math.random()*3));
+    monster.hp-=dmg;
+    if(monster.hp<=0){
+      var xpGain=5+GS.level*2;
+      var coinGain=Math.round((Math.random()*3+1)*10)/100;
+      GS.xp+=xpGain;GS.road+=coinGain;
+      glog('Defeated '+monster.name+'! +'+xpGain+' XP, +'+coinGain+' ROAD','#22c55e');
+      break;
+    }
+    var mDmg=Math.max(1,monster.atk-GS.def+Math.floor(Math.random()*3));
+    GS.hp-=mDmg;
+    if(GS.hp<=0){GS.hp=1;glog('Defeated by '+monster.name+'! You barely survive with 1 HP.','#FF2255');break;}
+  }
+  checkLevelUp();updateHUD();
+}
+function checkLevelUp(){
+  var needed=GS.level*100;
+  while(GS.xp>=needed){
+    GS.level++;GS.maxHp+=10;GS.hp=GS.maxHp;GS.atk+=2;GS.def+=1;
+    glog('LEVEL UP! Now level '+GS.level+'. HP/ATK/DEF increased!','#F5A623');
+    needed=GS.level*100;
+  }
+}
+
+// ── SKILLS TAB ──
+function loadSkills(){
+  fetch('/api/skills').then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('gt-skills');
+    var html='';
+    Object.keys(d.skill_trees||{}).forEach(function(tree){
+      var t=d.skill_trees[tree];
+      html+='<div style="margin-bottom:20px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+t.name+' <span style="font-size:11px;color:var(--sub)">'+t.description+'</span></div>';
+      html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">';
+      (t.skills||[]).forEach(function(s){
+        var learned=GS.skills.indexOf(s.id)!==-1;
+        var canLearn=GS.level>=s.level_req&&!learned&&s.prereqs.every(function(p){return GS.skills.indexOf(p)!==-1});
+        html+='<div class="skill-card'+(learned?' learned':'')+((!canLearn&&!learned)?' locked':'')+'" onclick="'+(canLearn?'learnSkill(\\''+s.id+'\\','+JSON.stringify(s.bonus).replace(/"/g,"'")+','+s.xp_cost+')':'')+'">';
+        html+='<div style="font-size:12px;font-weight:600;color:'+(learned?'#22c55e':'var(--text)')+'">'+s.name+'</div>';
+        html+='<div style="font-size:10px;color:var(--sub);margin-top:2px">Lv.'+s.level_req+' | '+s.xp_cost+' XP</div>';
+        var bonusText=Object.entries(s.bonus).map(function(e){return'+'+e[1]+' '+e[0]}).join(', ');
+        html+='<div style="font-size:10px;color:#8844FF;margin-top:2px">'+bonusText+'</div>';
+        if(learned) html+='<div style="font-size:9px;color:#22c55e;margin-top:4px">LEARNED</div>';
+        else if(canLearn) html+='<div style="font-size:9px;color:#F5A623;margin-top:4px">CLICK TO LEARN</div>';
+        html+='</div>';
+      });
+      html+='</div></div>';
+    });
+    el.innerHTML=html;
+  });
+}
+function learnSkill(id,bonus,cost){
+  if(GS.xp<cost){glog('Not enough XP! Need '+cost,'#FF2255');return;}
+  GS.skills.push(id);GS.xp-=cost;
+  if(bonus.attack)GS.atk+=bonus.attack;
+  if(bonus.defense)GS.def+=bonus.defense;
+  if(bonus.health)GS.maxHp+=bonus.health;
+  glog('Learned skill: '+id+'!','#22c55e');
+  updateHUD();loadSkills();
+}
+
+// ── ACHIEVEMENTS TAB ──
+function loadAchievements(){
+  fetch('/api/achievements').then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('gt-achievements');
+    var html='<div style="display:grid;gap:8px">';
+    (d.available||[]).forEach(function(a){
+      var earned=GS.achievements.indexOf(a.id)!==-1;
+      html+='<div class="ach-card'+(earned?' earned':'')+'">';
+      html+='<div class="ach-icon">'+(earned?'&#127942;':'&#128274;')+'</div>';
+      html+='<div><div style="font-size:13px;font-weight:600;color:'+(earned?'#F5A623':'var(--text)')+'">'+a.name+'</div>';
+      html+='<div style="font-size:11px;color:var(--sub)">'+a.description+'</div>';
+      html+='<div style="font-size:10px;color:'+(earned?'#22c55e':'var(--muted)');
+      html+=';margin-top:2px">'+(earned?'EARNED':'Reward: '+a.reward_road+' ROAD')+'</div>';
+      html+='</div></div>';
+    });
+    html+='</div>';
+    el.innerHTML=html;
+  });
+}
+
+// ── PETS TAB ──
+function loadPets(){
+  fetch('/api/pets?owner=demo').then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('gt-pets');
+    var sprites={wolf:'&#128058;',phoenix:'&#128038;',dragon:'&#128009;',golem:'&#129689;',sprite:'&#10024;',serpent:'&#128013;',gryphon:'&#129413;'};
+    var html='<div style="font-size:14px;font-weight:600;margin-bottom:12px">Your Pets ('+GS.pets.length+')</div>';
+    if(GS.pets.length>0){
+      html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:20px">';
+      GS.pets.forEach(function(p){html+='<div class="pet-card"><div class="pet-sprite">'+(sprites[p.species]||'&#128062;')+'</div><div style="font-size:12px;font-weight:600">'+p.name+'</div><div style="font-size:10px;color:var(--sub)">Lv.'+p.level+'</div></div>';});
+      html+='</div>';
+    }
+    html+='<div style="font-size:14px;font-weight:600;margin-bottom:12px">Available Species</div>';
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">';
+    (d.available_species||[]).forEach(function(s){
+      html+='<div class="pet-card" onclick="adoptPet(\\''+s.id+'\\',\\''+s.name+'\\')">';
+      html+='<div class="pet-sprite">'+(sprites[s.id]||'&#128062;')+'</div>';
+      html+='<div style="font-size:12px;font-weight:600">'+s.name+'</div>';
+      html+='<div style="font-size:10px;color:var(--sub)">'+s.element+' | ATK:'+s.base_stats.attack+' DEF:'+s.base_stats.defense+'</div>';
+      html+='<div style="font-size:9px;color:#F5A623;margin-top:4px">CLICK TO ADOPT</div>';
+      html+='</div>';
+    });
+    html+='</div>';
+    el.innerHTML=html;
+  });
+}
+function adoptPet(species,name){
+  if(GS.road<0.5){glog('Need 0.5 ROAD to adopt a pet!','#FF2255');return;}
+  GS.road-=0.5;
+  GS.pets.push({species:species,name:name,level:1});
+  glog('Adopted '+name+'!','#CC00AA');
+  updateHUD();loadPets();
+}
+
+// ── INVENTORY TAB ──
+function renderInventory(){
+  var el=document.getElementById('gt-inventory');
+  var html='<div style="font-size:14px;font-weight:600;margin-bottom:12px">Inventory ('+GS.inventory.length+' items)</div>';
+  if(GS.inventory.length===0) html+='<div style="color:var(--sub);font-size:12px">No items yet. Explore to find loot!</div>';
+  else{
+    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">';
+    GS.inventory.forEach(function(item,i){
+      var rc={common:'var(--sub)',uncommon:'#22c55e',rare:'#8844FF',legendary:'#F5A623'};
+      html+='<div class="feature-card" style="padding:10px"><div style="font-size:12px;font-weight:600">'+item.name+'</div><div style="font-size:10px;color:'+(rc[item.rarity]||'var(--sub)')+'">'+item.rarity+'</div></div>';
+    });
+    html+='</div>';
+  }
+  el.innerHTML=html;
+}
+
+// ── QUESTS TAB ──
+function loadQuests(){
+  var el=document.getElementById('gt-quests');
+  var quests=[
+    {id:'explore_10',name:'Explorer',desc:'Move 10 times on the map',target:10,check:function(){return Math.min(10,GS.xp/3)},reward:1},
+    {id:'fighter_5',name:'Monster Slayer',desc:'Reach level 5',target:5,check:function(){return GS.level},reward:2},
+    {id:'collector',name:'Collector',desc:'Find 5 items',target:5,check:function(){return GS.inventory.length},reward:1.5},
+    {id:'social',name:'Join the Guild',desc:'Join a faction',target:1,check:function(){return GS.faction?1:0},reward:0.5},
+    {id:'pet_owner',name:'Pet Owner',desc:'Adopt a pet',target:1,check:function(){return GS.pets.length},reward:0.5},
+  ];
+  var html='<div style="display:grid;gap:8px">';
+  quests.forEach(function(q){
+    var progress=q.check();
+    var pct=Math.min(100,Math.round(progress/q.target*100));
+    var done=progress>=q.target;
+    html+='<div class="ach-card'+(done?' earned':'')+'">';
+    html+='<div class="ach-icon">'+(done?'&#9989;':'&#128203;')+'</div>';
+    html+='<div style="flex:1"><div style="font-size:13px;font-weight:600">'+q.name+'</div>';
+    html+='<div style="font-size:11px;color:var(--sub)">'+q.desc+'</div>';
+    html+='<div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+(done?'#22c55e':'var(--grad)')+';border-radius:2px"></div></div>';
+    html+='<div style="font-size:10px;color:var(--muted);margin-top:2px">'+Math.round(progress)+'/'+q.target+(done?' | Reward: '+q.reward+' ROAD claimed':'')+'</div>';
+    html+='</div></div>';
+  });
+  html+='</div>';
+  el.innerHTML=html;
+}
+
+// ── WORLDS TAB ──
+function loadWorlds(){
+  fetch('/api/worlds').then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('gt-worlds');
+    var worlds=d.worlds||[];
+    var html='<div style="display:flex;gap:12px;margin-bottom:16px"><button class="btn-p" onclick="createWorld()" style="font-size:12px;padding:8px 16px">Create World</button></div>';
+    if(worlds.length===0) html+='<div style="color:var(--sub);font-size:12px">No worlds yet. Create one!</div>';
+    else{
+      html+='<div class="feature-grid">';
+      worlds.forEach(function(w){
+        html+='<div class="feature-card"><h3>'+w.name+'</h3><p style="font-size:11px;color:var(--sub)">'+(w.description||'A world')+'</p><p style="font-size:10px;color:var(--muted);margin-top:4px">'+w.template+' | '+(w.published?'Published':'Draft')+'</p></div>';
+      });
+      html+='</div>';
+    }
+    el.innerHTML=html;
+  });
+}
+function createWorld(){
+  var name=prompt('World name:');
+  if(!name)return;
+  fetch('/api/worlds',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,template:'fantasy',creator:'player'})}).then(function(r){return r.json()}).then(function(d){
+    glog('Created world: '+name,'#22c55e');
+    loadWorlds();
+  }).catch(function(){glog('Failed to create world','#FF2255')});
+}
+
+// ── FACTION JOINING ──
+function loadFactions(){
+  fetch('/api/factions').then(function(r){return r.json()}).then(function(d){
+    var el=document.getElementById('faction-join');
+    if(GS.faction){el.innerHTML='';return;}
+    var types=d.faction_types||[];
+    el.innerHTML=types.slice(0,3).map(function(f){
+      return '<button class="btn-g" onclick="joinFaction(\\''+f.id+'\\',\\''+f.name+'\\',\\''+f.motto+'\\')" style="font-size:9px;padding:4px 8px;margin:2px">'+f.name+'</button>';
+    }).join('');
+  });
+}
+function joinFaction(id,name,motto){
+  GS.faction={id:id,name:name,motto:motto};
+  glog('Joined '+name+'! "'+motto+'"','#F5A623');
+  updateHUD();loadFactions();
+}
+
+// ── Arrow key movement ──
+document.addEventListener('keydown',function(e){
+  if(document.getElementById('game').style.display==='none')return;
+  if(e.target.matches('input,textarea'))return;
+  var moved=false;
+  if(e.key==='ArrowUp'&&GS.pos.y>0){GS.pos.y--;moved=true;}
+  if(e.key==='ArrowDown'&&GS.pos.y<MAP_SIZE-1){GS.pos.y++;moved=true;}
+  if(e.key==='ArrowLeft'&&GS.pos.x>0){GS.pos.x--;moved=true;}
+  if(e.key==='ArrowRight'&&GS.pos.x<MAP_SIZE-1){GS.pos.x++;moved=true;}
+  if(moved){e.preventDefault();GS.xp+=1;checkLevelUp();renderMap();updateHUD();}
+});
+
+// ── Show/hide sections ──
+function showGame(){
+  document.querySelector('.hero').style.display='none';
+  document.getElementById('game').style.display='';
+  document.getElementById('builder').style.display='none';
+  updateHUD();renderMap();loadFactions();
+  glog('Welcome to RoadWorld, '+GS.name+'! Level '+GS.level+'. Explore, fight, collect.','#8844FF');
+}
+function showBuilder(){
+  document.querySelector('.hero').style.display='none';
+  document.getElementById('game').style.display='none';
+  document.getElementById('builder').style.display='';
+  loadTemplates();
+}
+function loadTemplates(){
+  var templates=[
+    {id:'fantasy',name:'Fantasy Kingdom',icon:'&#127984;',desc:'Medieval castles, forests, dragons'},
+    {id:'scifi',name:'Space Station',icon:'&#128640;',desc:'Sci-fi corridors, zero-G, alien tech'},
+    {id:'ocean',name:'Ocean World',icon:'&#127754;',desc:'Underwater caves, coral reefs, sea monsters'},
+    {id:'city',name:'Cyberpunk City',icon:'&#127961;',desc:'Neon streets, megacorps, hackers'},
+    {id:'dungeon',name:'Dark Dungeon',icon:'&#128128;',desc:'Deep caves, traps, treasure'},
+    {id:'island',name:'Tropical Island',icon:'&#127965;',desc:'Beaches, palm trees, buried treasure'},
+  ];
+  document.getElementById('templates-grid').innerHTML=templates.map(function(t){
+    return '<div class="feature-card" style="cursor:pointer" onclick="createWorldFromTemplate(\\''+t.id+'\\')"><div class="feature-icon" style="background:var(--bg);font-size:24px">'+t.icon+'</div><h3>'+t.name+'</h3><p>'+t.desc+'</p></div>';
+  }).join('');
+}
+function createWorldFromTemplate(template){
+  var name=prompt('Name your world:');
+  if(!name)return;
+  fetch('/api/worlds',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,template:template,creator:'player'})}).then(function(r){return r.json()}).then(function(d){
+    alert('World "'+name+'" created! Switch to Play mode to explore.');
+    showGame();
+  });
+}
+
+// ── Boot ──
+fetch('/api/health').then(function(r){return r.json()}).then(function(d){document.getElementById('st').textContent='RoadWorld is live — '+d.systems_online+' systems online'}).catch(function(){document.getElementById('st').textContent='RoadWorld is running'});
+fetch('/api/stats').then(function(r){return r.json()}).then(function(d){
+  var el=document.getElementById('live-stats');
   el.innerHTML=[
     ['Worlds',d.worlds],['Published Games',d.published_games],['Players',d.unique_players],
     ['Total Plays',d.total_plays],['Objects Placed',d.total_objects],['NPCs',d.total_npcs||0],
     ['Active Quests',d.active_quests||0],['Achievements',d.total_achievements||0],
     ['Templates',d.templates_available],['Agents',d.agents?.length||4]
-  ].map(([l,v])=>'<div class="live-row"><span class="live-label">'+l+'</span><span class="live-val">'+v+'</span></div>').join('');
-}).catch(()=>{});
+  ].map(function(e){return '<div class="live-row"><span class="live-label">'+e[0]+'</span><span class="live-val">'+e[1]+'</span></div>'}).join('');
+}).catch(function(){});
 </script>
 </body></html>`;
 
