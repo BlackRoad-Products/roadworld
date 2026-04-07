@@ -10,7 +10,15 @@ function page(): Response {
   const agentsJSON=JSON.stringify(AGENTS);
   const buildingsJSON=JSON.stringify(BUILDINGS);
   const html=`<!DOCTYPE html><html lang="en"><head>
-<meta charset="UTF-8"><title>RoadWorld — BlackRoad Metaverse</title>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RoadWorld — Agent Metaverse</title>
+<meta name="description" content="Isometric agent world with buildings, roads, and live convoy events.">
+<link rel="canonical" href="https://roadworld.blackroad.io/">
+<meta property="og:title" content="RoadWorld — Agent Metaverse">
+<meta property="og:description" content="Isometric agent world with buildings, roads, and live convoy events.">
+<meta property="og:url" content="https://roadworld.blackroad.io/">
+<meta property="og:type" content="website">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"RoadWorld","url":"https://roadworld.blackroad.io/","description":"Isometric agent world with buildings, roads, and live convoy events.","applicationCategory":"GameApplication","publisher":{"@type":"Organization","name":"BlackRoad OS, Inc.","url":"https://blackroad.io"}}</script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
