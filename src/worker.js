@@ -5,6 +5,7 @@
 const ROOT_HTML = `<!-- PROPRIETARY. Copyright 2025-2026 BlackRoad OS, Inc. All rights reserved. NOT open source. -->
 <!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://images.blackroad.io/brand/brand.css">
 <title>RoadWorld — BlackRoad OS</title>
 <meta name="description" content="Build games and virtual worlds in the browser. Drag-and-drop creation, 8 templates, NPC agents, multiplayer. No code required. Earn RoadCoin when others play.">
 <meta property="og:title" content="RoadWorld — Browser Game Builder — BlackRoad OS"><meta property="og:description" content="Build games and virtual worlds in the browser. Drag-and-drop, templates, NPC agents, multiplayer. No code required.">
@@ -836,6 +837,7 @@ export default {
     if (path === '/create') {
       const indexHtml = `<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://images.blackroad.io/brand/brand.css">
 <title>Creation Guides — RoadWorld | BlackRoad OS</title>
 <meta name="description" content="Learn to build game worlds in RoadWorld. Guides on terrain, NPCs, quests, multiplayer, pixel art, scripting, and publishing your games.">
 <meta property="og:title" content="Creation Guides — RoadWorld | BlackRoad OS"><meta property="og:description" content="Learn to build game worlds in RoadWorld. 15+ guides from beginner terrain to advanced scripting.">
@@ -860,6 +862,7 @@ export default {
         const related = guide.related.map(r => CREATION_GUIDES.find(g => g.slug === r)).filter(Boolean);
         const guideHtml = `<!DOCTYPE html><html lang="en"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="https://images.blackroad.io/brand/brand.css">
 <title>${guide.name} — RoadWorld | BlackRoad OS</title>
 <meta name="description" content="${guide.description}">
 <meta property="og:title" content="${guide.name} — RoadWorld | BlackRoad OS"><meta property="og:description" content="${guide.description}">
