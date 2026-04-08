@@ -800,6 +800,16 @@ export default {
         if (html) return new Response(html, { headers: { ...CORS, 'Content-Type': 'text/html;charset=UTF-8' } });
       } catch {}
     }
+    // 3D worlds from KV
+    if (path === '/wilderness') {
+      try { const h = await env.STORE.get('wilderness','text'); if(h) return new Response(h,{headers:{...CORS,'Content-Type':'text/html;charset=UTF-8'}}); } catch {}
+    }
+    if (path === '/minnesota') {
+      try { const h = await env.STORE.get('minnesota-game','text'); if(h) return new Response(h,{headers:{...CORS,'Content-Type':'text/html;charset=UTF-8'}}); } catch {}
+    }
+    if (path === '/living-world') {
+      try { const h = await env.STORE.get('living-world','text'); if(h) return new Response(h,{headers:{...CORS,'Content-Type':'text/html;charset=UTF-8'}}); } catch {}
+    }
     if (path === "/" || path === "") return new Response(ROOT_HTML, { headers: { ...CORS, "Content-Type": "text/html;charset=UTF-8" } });
 
     // ── CREATION GUIDES (crawlable content) ──
