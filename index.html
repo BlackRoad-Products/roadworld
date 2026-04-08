@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoadWorld — The Game Engine | BlackRoad OS</title>
+<meta name="description" content="37 game templates. 13 categories. Build anything from city builders to RPGs to rhythm games. Roblox meets BlackRoad.">
+<meta property="og:title" content="RoadWorld — The Game Engine | BlackRoad OS">
+<meta property="og:description" content="37 game templates. 13 categories. Build anything from city builders to RPGs to rhythm games.">
+<meta property="og:url" content="https://roadworld.blackroad.io">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--g135:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--bg:#000;--card:#0a0a0a;--elevated:#111;--hover:#181818;--border:#1a1a1a;--muted:#444;--sub:#737373;--text:#f5f5f5;--white:#fff;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sg);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#000}::-webkit-scrollbar-thumb{background:#1a1a1a;border-radius:2px}
+a{color:var(--text);text-decoration:none}
+button{font-family:var(--sg);cursor:pointer}
+.grad-bar{height:3px;background:var(--g)}
+.container{max-width:1000px;width:100%;margin:0 auto;padding:0 24px}
+.section{padding:72px 0}
+.section-num{font-family:var(--jb);font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+.section-title{font-weight:700;font-size:28px;color:var(--white);margin-bottom:8px}
+.section-desc{font-size:14px;color:var(--sub);max-width:460px;line-height:1.7}
+.divider{height:1px;background:var(--border)}
+
+/* NAV */
+nav{position:fixed;top:3px;left:0;right:0;z-index:100;padding:0 24px}
+.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(0,0,0,.9);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:10px}
+.nav-logo{font-weight:700;font-size:16px;color:var(--white);display:flex;align-items:center;gap:10px}
+.nav-logo-bar{width:20px;height:3px;border-radius:2px;background:var(--g)}
+.nav-links{display:flex;gap:24px}
+.nav-links a{font-size:12px;font-weight:500;color:var(--sub);transition:color .15s}
+.nav-links a:hover{color:var(--white)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:6px;font-weight:600;font-size:12px;border:none;transition:all .15s}
+.btn-white{background:var(--white);color:#000}
+.btn-white:hover{background:#e0e0e0}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-outline:hover{border-color:#444}
+.btn-lg{padding:13px 32px;font-size:14px;border-radius:8px}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 80px;position:relative}
+.hero-tag{font-family:var(--jb);font-size:10px;color:var(--sub);letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:8px}
+.hero-dot{width:5px;height:5px;border-radius:50%;background:var(--white);animation:pulse 2.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-title{font-size:clamp(48px,9vw,96px);font-weight:700;line-height:.92;color:var(--white);letter-spacing:-.04em;margin-bottom:20px}
+.hero-sub{font-size:clamp(15px,1.8vw,18px);color:var(--sub);max-width:520px;margin:0 auto 40px;line-height:1.7}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.hero-stats{display:flex;gap:40px;margin-top:64px}
+.hero-stat{text-align:center}
+.hero-stat-n{font-size:28px;font-weight:700;color:var(--white);font-family:var(--jb)}
+.hero-stat-l{font-size:10px;color:var(--muted);font-family:var(--jb);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
+
+/* GAME GRID */
+.game-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;margin-top:28px}
+.game-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 16px;transition:border-color .15s;display:block}
+.game-card:hover{border-color:#333}
+.game-card-icon{font-size:28px;margin-bottom:12px;display:block}
+.game-card-name{font-weight:600;font-size:14px;color:var(--white);margin-bottom:3px}
+.game-card-category{font-family:var(--jb);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+.game-card-difficulty{font-size:11px;color:var(--sub)}
+.live-stats{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap}
+.live-stat{font-family:var(--jb);font-size:11px;color:var(--sub)}
+.live-stat strong{color:var(--white);font-weight:600}
+
+/* CATEGORY GRID */
+.category-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;margin-top:28px}
+.category-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:20px 14px;text-align:center;transition:border-color .15s}
+.category-card:hover{border-color:#333}
+.category-icon{width:32px;height:32px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:15px}
+.category-name{font-weight:600;font-size:12px;color:var(--white)}
+
+/* FEATURE GRID */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px;margin-top:28px}
+.feature-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:24px 18px;transition:border-color .15s}
+.feature-card:hover{border-color:#333}
+.feature-num{font-family:var(--jb);font-size:28px;font-weight:700;color:var(--white);margin-bottom:6px}
+.feature-name{font-weight:600;font-size:14px;color:var(--white);margin-bottom:4px}
+.feature-desc{font-size:12px;color:var(--sub);line-height:1.6}
+
+/* AGENT GRID */
+.agent-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:24px}
+.agent{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:var(--card);border:1px solid var(--border);border-radius:5px;transition:border-color .15s}
+.agent:hover{border-color:#333}
+.agent-name{font-size:11px;font-weight:600;color:var(--text)}
+.agent-role{font-family:var(--jb);font-size:8px;color:var(--muted)}
+.agent-desc{font-size:11px;color:var(--sub);margin-top:2px}
+
+/* AGENT CARDS (extended) */
+.agent-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin-top:28px}
+.agent-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:18px 16px;transition:border-color .15s}
+.agent-card:hover{border-color:#333}
+.agent-card-name{font-weight:600;font-size:14px;color:var(--white);margin-bottom:2px}
+.agent-card-role{font-family:var(--jb);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:8px}
+.agent-card-desc{font-size:12px;color:var(--sub);line-height:1.6}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px;margin-top:28px}
+.pricing-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px 24px;transition:border-color .15s}
+.pricing-card:hover{border-color:#333}
+.pricing-card.featured{border-color:#333;background:var(--elevated)}
+.pricing-tier{font-family:var(--jb);font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
+.pricing-price{font-size:36px;font-weight:700;color:var(--white);margin-bottom:4px}
+.pricing-price span{font-size:14px;font-weight:400;color:var(--sub)}
+.pricing-desc{font-size:12px;color:var(--sub);margin-bottom:20px;line-height:1.6}
+.pricing-features{list-style:none;margin-bottom:24px}
+.pricing-features li{font-size:12px;color:var(--sub);padding:4px 0;display:flex;align-items:center;gap:8px}
+.pricing-features li::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--white);flex-shrink:0}
+
+/* CONNECTED */
+.connected-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:6px;margin-top:28px}
+.connected-card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;transition:border-color .15s;display:block}
+.connected-card:hover{border-color:#333}
+.connected-name{font-weight:600;font-size:14px;color:var(--white);margin-bottom:3px}
+.connected-line{font-size:12px;color:var(--sub)}
+.connected-url{font-family:var(--jb);font-size:9px;color:var(--muted);margin-top:8px}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px 0}
+.footer-inner{max-width:1000px;margin:0 auto;padding:0 24px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
+.footer-brand{font-weight:700;font-size:15px;color:var(--white);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.footer-brand-bar{width:16px;height:3px;border-radius:2px;background:var(--g)}
+.footer-tagline{font-family:var(--jb);font-size:9px;color:var(--muted);letter-spacing:.1em}
+.footer-col h4{font-family:var(--jb);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
+.footer-col a{display:block;font-size:12px;color:var(--sub);padding:3px 0;transition:color .15s}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
+.footer-copy{font-family:var(--jb);font-size:9px;color:var(--muted)}
+
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero{padding:80px 16px 48px}
+  .hero-stats{gap:24px}
+  .game-grid,.feature-grid,.agent-cards,.pricing-grid,.connected-grid{grid-template-columns:1fr}
+  .category-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:24px}
+  .hero-title{font-size:clamp(36px,8vw,64px)}
+}
+</style>
+<link rel="stylesheet" href="https://images.blackroad.io/brand/brand.css">
+</head>
+<body>
+
+<div class="grad-bar"></div>
+
+<!-- NAV -->
+<nav>
+<div class="nav-inner">
+  <a href="https://blackroad.io" class="nav-logo"><span class="nav-logo-bar"></span>BlackRoad</a>
+  <div class="nav-links">
+    <a href="https://os.blackroad.io">OS</a>
+    <a href="https://roadtrip.blackroad.io">Agents</a>
+    <a href="https://roadie.blackroad.io">Tutor</a>
+    <a href="https://roadwork.blackroad.io">Work</a>
+    <a href="https://highway.blackroad.io">Dashboard</a>
+    <a href="#games">Games</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <a href="https://roadworld.blackroad.io"><button class="btn btn-white">Open RoadWorld</button></a>
+</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tag"><span class="hero-dot"></span>The Game Engine</div>
+  <h1 class="hero-title">RoadWorld</h1>
+  <p class="hero-sub">37 game templates. 13 categories. Build anything from city builders to RPGs to rhythm games. Roblox meets BlackRoad.</p>
+  <div class="hero-actions">
+    <a href="#games"><button class="btn btn-white btn-lg">Browse Games</button></a>
+    <a href="https://roadworld.blackroad.io/create"><button class="btn btn-outline btn-lg">Create a Game</button></a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-n">37</div><div class="hero-stat-l">Templates</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">13</div><div class="hero-stat-l">Categories</div></div>
+    <div class="hero-stat"><div class="hero-stat-n">5</div><div class="hero-stat-l">Agents</div></div>
+    <div class="hero-stat"><div class="hero-stat-n" id="stat-creators">--</div><div class="hero-stat-l">Creators</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURED GAMES (LIVE) -->
+<section class="section" id="games">
+<div class="container">
+  <div class="section-num">01 — Featured</div>
+  <div class="section-title">Popular Templates</div>
+  <div class="section-desc">Live from the RoadWorld engine. Pick a template and start building.</div>
+  <div class="live-stats">
+    <div class="live-stat">Total games: <strong id="live-total">--</strong></div>
+    <div class="live-stat">Active creators: <strong id="live-creators">--</strong></div>
+  </div>
+  <div class="game-grid" id="game-grid">
+    <div class="game-card"><div class="game-card-icon"></div><div class="game-card-name">Loading...</div><div class="game-card-category">Fetching templates</div></div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CATEGORIES -->
+<section class="section">
+<div class="container">
+  <div class="section-num">02 — Categories</div>
+  <div class="section-title">13 Game Genres</div>
+  <div class="section-desc">Every category has templates, agents, and tools ready to go.</div>
+  <div class="category-grid">
+    <div class="category-card"><div class="category-icon" style="background:#1a1a2e">S</div><div class="category-name">Simulation</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#1a2e1a">A</div><div class="category-name">Adventure</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#2e1a2e">O</div><div class="category-name">Social</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#2e2e1a">P</div><div class="category-name">Puzzle</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#1a2e2e">E</div><div class="category-name">Exploration</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#2e1a1a">C</div><div class="category-name">Creative</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#1a1a2e">T</div><div class="category-name">Strategy</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#2e1a1a">X</div><div class="category-name">Action</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#1a2e1a">N</div><div class="category-name">Narrative</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#2e1a2e">M</div><div class="category-name">Music</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#1a2e2e">L</div><div class="category-name">Education</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#2e2e1a">K</div><div class="category-name">Casual</div></div>
+    <div class="category-card"><div class="category-icon" style="background:#1a1a1a">R</div><div class="category-name">Retro</div></div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FEATURES -->
+<section class="section">
+<div class="container">
+  <div class="section-num">03 — Engine</div>
+  <div class="section-title">Built to Build</div>
+  <div class="section-desc">Everything you need to create, publish, and monetize games inside BlackRoad OS.</div>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-num">37</div>
+      <div class="feature-name">Templates</div>
+      <div class="feature-desc">City builders, RPGs, platformers, rhythm games, card games, tower defense, and more. Fork any template and make it yours.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">NPC</div>
+      <div class="feature-name">NPC System</div>
+      <div class="feature-desc">AI-powered NPCs with persistent memory, dialogue trees, and emotional states. Every character remembers every player.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">QE</div>
+      <div class="feature-name">Quest Engine</div>
+      <div class="feature-desc">Branching quest lines with dynamic objectives, reputation tracking, and procedural side quests generated by agents.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">MP</div>
+      <div class="feature-name">Multiplayer</div>
+      <div class="feature-desc">Real-time multiplayer with WebSocket rooms, player matchmaking, leaderboards, and cross-game identity via BlackRoad OS.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AGENTS -->
+<section class="section">
+<div class="container">
+  <div class="section-num">04 — Agents</div>
+  <div class="section-title">The Game Crew</div>
+  <div class="section-desc">Five agents power every game in RoadWorld. They design, narrate, simulate, render, and ignite.</div>
+  <div class="agent-cards">
+    <div class="agent-card">
+      <div class="agent-card-name">Thalia</div>
+      <div class="agent-card-role">Engagement</div>
+      <div class="agent-card-desc">Keeps players hooked. Manages progression curves, reward loops, difficulty scaling, and session flow.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-card-name">Calliope</div>
+      <div class="agent-card-role">Story</div>
+      <div class="agent-card-desc">Writes quests, dialogue, lore, and branching narratives. Every game world has a story worth telling.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-card-name">Gematria</div>
+      <div class="agent-card-role">Simulation</div>
+      <div class="agent-card-desc">Runs the numbers. Economy balancing, physics, procedural generation, and world simulation logic.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-card-name">Sapphira</div>
+      <div class="agent-card-role">Visual</div>
+      <div class="agent-card-desc">Handles rendering, pixel art, UI layouts, particle effects, and the visual identity of every game.</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-card-name">Seraphina</div>
+      <div class="agent-card-role">Action</div>
+      <div class="agent-card-desc">Powers combat, movement, collision, input handling, and real-time game mechanics at 60fps.</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PRICING -->
+<section class="section" id="pricing">
+<div class="container">
+  <div class="section-num">05 — Pricing</div>
+  <div class="section-title">Start Free, Scale Up</div>
+  <div class="section-desc">Every creator starts with the full engine. Pay when you publish.</div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-tier">Free</div>
+      <div class="pricing-price">$0<span>/mo</span></div>
+      <div class="pricing-desc">Build and test unlimited games. Share with friends.</div>
+      <ul class="pricing-features">
+        <li>All 37 templates</li>
+        <li>NPC system (5 NPCs)</li>
+        <li>Quest engine</li>
+        <li>Single-player only</li>
+        <li>Community support</li>
+      </ul>
+      <a href="https://roadworld.blackroad.io/create"><button class="btn btn-outline" style="width:100%;justify-content:center">Start Building</button></a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-tier">Pro</div>
+      <div class="pricing-price">$19<span>/mo</span></div>
+      <div class="pricing-desc">Publish games. Multiplayer. Unlimited NPCs. Full agent access.</div>
+      <ul class="pricing-features">
+        <li>Everything in Free</li>
+        <li>Multiplayer rooms</li>
+        <li>Unlimited NPCs</li>
+        <li>All 5 game agents</li>
+        <li>Publish to RoadWorld</li>
+        <li>Revenue sharing (90/10)</li>
+      </ul>
+      <a href="https://pay.blackroad.io"><button class="btn btn-white" style="width:100%;justify-content:center">Go Pro</button></a>
+    </div>
+    <div class="pricing-card">
+      <div class="pricing-tier">Studio</div>
+      <div class="pricing-price">$49<span>/mo</span></div>
+      <div class="pricing-desc">For teams. White-label, custom domains, analytics, priority agents.</div>
+      <ul class="pricing-features">
+        <li>Everything in Pro</li>
+        <li>Team collaboration (5 seats)</li>
+        <li>Custom domain publishing</li>
+        <li>Advanced analytics</li>
+        <li>Priority agent queue</li>
+        <li>Revenue sharing (95/5)</li>
+      </ul>
+      <a href="https://pay.blackroad.io"><button class="btn btn-outline" style="width:100%;justify-content:center">Contact Us</button></a>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONNECTED -->
+<section class="section">
+<div class="container">
+  <div class="section-num">06 — Connected</div>
+  <div class="section-title">Part of the Highway</div>
+  <div class="section-desc">RoadWorld integrates with the full BlackRoad product suite.</div>
+  <div class="connected-grid">
+    <a href="https://officeroad.blackroad.io" class="connected-card">
+      <div class="connected-name">OfficeRoad</div>
+      <div class="connected-line">Manage game studio projects, tasks, and team workflows from the office suite.</div>
+      <div class="connected-url">officeroad.blackroad.io</div>
+    </a>
+    <a href="https://roadcoin.blackroad.io" class="connected-card">
+      <div class="connected-name">RoadCoin</div>
+      <div class="connected-line">In-game currency, player wallets, and cross-game economies powered by the ledger.</div>
+      <div class="connected-url">roadcoin.blackroad.io</div>
+    </a>
+    <a href="https://roadbook.blackroad.io" class="connected-card">
+      <div class="connected-name">RoadBook</div>
+      <div class="connected-line">Publish game guides, lore books, and strategy docs directly from your game world.</div>
+      <div class="connected-url">roadbook.blackroad.io</div>
+    </a>
+  </div>
+</div>
+</section>
+
+<!-- FOOTER -->
+<div class="grad-bar"></div>
+<footer>
+<div class="footer-inner">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand"><span class="footer-brand-bar"></span>BlackRoad OS</div>
+      <div class="footer-tagline">Remember the Road. Pave Tomorrow.</div>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="https://os.blackroad.io">BlackRoad OS</a>
+      <a href="https://roadtrip.blackroad.io">RoadTrip</a>
+      <a href="https://roadie.blackroad.io">Roadie</a>
+      <a href="https://roadview.blackroad.io">RoadView</a>
+      <a href="https://roadwork.blackroad.io">RoadWork</a>
+      <a href="https://roadcode.blackroad.io">RoadCode</a>
+    </div>
+    <div class="footer-col">
+      <h4>More</h4>
+      <a href="https://backroad.blackroad.io">BackRoad</a>
+      <a href="https://roadbook.blackroad.io">RoadBook</a>
+      <a href="https://roadworld.blackroad.io">RoadWorld</a>
+      <a href="https://carkeys.blackroad.io">CarKeys</a>
+      <a href="https://roadcoin.blackroad.io">RoadCoin</a>
+      <a href="https://highway.blackroad.io">Highway</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="https://pay.blackroad.io">Pricing</a>
+      <a href="https://github.com/BlackRoadOS">GitHub</a>
+      <a href="https://huggingface.co/BlackRoad-OS">HuggingFace</a>
+      <a href="https://roadside.blackroad.io">Support</a>
+      <a href="mailto:alexa@blackroad.io">Contact</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">&copy; 2026 BlackRoad OS, Inc. Delaware C-Corp. All rights reserved.</div>
+  </div>
+</div>
+</footer>
+
+<script>
+// Fetch featured game templates
+(async function() {
+  const grid = document.getElementById('game-grid');
+  const icons = {
+    'Simulation': 'S', 'Adventure': 'A', 'Social': 'O', 'Puzzle': 'P',
+    'Exploration': 'E', 'Creative': 'C', 'Strategy': 'T', 'Action': 'X',
+    'Narrative': 'N', 'Music': 'M', 'Education': 'L', 'Casual': 'K', 'Retro': 'R'
+  };
+
+  // Fallback templates in case API is unavailable
+  const fallback = [
+    { name: 'City Builder', category: 'Simulation', difficulty: 'Intermediate' },
+    { name: 'Dungeon Crawler', category: 'Adventure', difficulty: 'Advanced' },
+    { name: 'Chat World', category: 'Social', difficulty: 'Beginner' },
+    { name: 'Match-3', category: 'Puzzle', difficulty: 'Beginner' },
+    { name: 'Open World', category: 'Exploration', difficulty: 'Advanced' },
+    { name: 'Rhythm Runner', category: 'Music', difficulty: 'Intermediate' }
+  ];
+
+  try {
+    const res = await fetch('https://roadworld.blackroad.io/api/templates');
+    if (!res.ok) throw new Error('API unavailable');
+    const data = await res.json();
+    const templates = (data.templates || data).slice(0, 6);
+    renderGames(templates);
+  } catch (e) {
+    renderGames(fallback);
+  }
+
+  function renderGames(templates) {
+    grid.innerHTML = templates.map(t => `
+      <div class="game-card">
+        <div class="game-card-icon">${icons[t.category] || '?'}</div>
+        <div class="game-card-name">${t.name}</div>
+        <div class="game-card-category">${t.category}</div>
+        <div class="game-card-difficulty">${t.difficulty}</div>
+      </div>
+    `).join('');
+  }
+
+  // Fetch stats
+  try {
+    const statsRes = await fetch('https://roadworld.blackroad.io/api/stats');
+    if (!statsRes.ok) throw new Error('Stats unavailable');
+    const stats = await statsRes.json();
+    document.getElementById('live-total').textContent = stats.total_games || stats.totalGames || '--';
+    document.getElementById('live-creators').textContent = stats.creators || stats.total_creators || '--';
+    document.getElementById('stat-creators').textContent = stats.creators || stats.total_creators || '--';
+  } catch (e) {
+    document.getElementById('live-total').textContent = '37';
+    document.getElementById('live-creators').textContent = '--';
+  }
+})();
+</script>
+
+</body>
+</html>
