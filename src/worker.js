@@ -17,449 +17,36 @@ const ROOT_HTML = `<!-- PROPRIETARY. Copyright 2025-2026 BlackRoad OS, Inc. All 
 <style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#000;--card:#0a0a0a;--border:#1a1a1a;--text:#f5f5f5;--sub:#737373;--muted:#444;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace;--in:'Inter',sans-serif;--grad:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--accent:#9C27B0}html{scroll-behavior:smooth}body{background:var(--bg);color:var(--text);font-family:var(--sg);overflow-x:hidden}a{color:inherit;text-decoration:none}.bar{height:3px;background:var(--grad);position:fixed;top:0;left:0;right:0;z-index:1000}nav{position:fixed;top:3px;left:0;right:0;z-index:999;background:rgba(0,0,0,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);height:48px;display:flex;align-items:center;padding:0 24px}.n-left{display:flex;align-items:center;gap:8px}.n-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}.n-name{font-weight:700;font-size:15px}.n-tag{font-family:var(--jb);font-size:10px;color:var(--muted);margin-left:8px}.n-right{margin-left:auto;display:flex;gap:12px;align-items:center}.n-right a{font-family:var(--in);font-size:12px;color:var(--sub)}.n-right a:hover{color:var(--text)}.cta{font-size:11px;font-weight:600;padding:6px 16px;border-radius:5px;background:var(--text);color:var(--bg);border:none;cursor:pointer;font-family:var(--sg)}.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}.orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.1}h1{font-size:clamp(32px,7vw,64px);font-weight:700;letter-spacing:-.03em;line-height:1.05;max-width:700px;margin-bottom:12px;position:relative}.sub{font-family:var(--in);font-size:clamp(14px,2vw,17px);color:var(--sub);max-width:500px;line-height:1.6;margin-bottom:32px;position:relative}.badge{font-family:var(--jb);font-size:10px;color:var(--sub);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;position:relative;display:flex;align-items:center;gap:8px}.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:p 2s infinite}@keyframes p{0%,100%{opacity:1}50%{opacity:.3}}.btns{display:flex;gap:10px;position:relative;flex-wrap:wrap;justify-content:center}.btn-p{padding:11px 28px;border-radius:7px;font-size:13px;font-weight:600;background:var(--text);color:var(--bg);border:none;cursor:pointer;font-family:var(--sg)}.btn-g{padding:11px 28px;border-radius:7px;font-size:13px;font-weight:600;background:transparent;color:var(--text);border:1px solid var(--border);cursor:pointer;font-family:var(--sg)}.btn-g:hover{border-color:#444}.section{max-width:900px;margin:0 auto;padding:48px 24px}.status{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:14px 18px;display:flex;align-items:center;gap:10px;margin-bottom:24px}.status-dot{width:8px;height:8px;border-radius:50%;background:#22c55e;animation:p 2s infinite}.status-text{font-family:var(--jb);font-size:11px;color:var(--sub)}.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:24px}.feature-card{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:20px}.feature-card h3{font-size:14px;margin-bottom:6px;font-weight:600}.feature-card p{font-family:var(--in);font-size:12px;color:var(--sub);line-height:1.5}.feature-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;font-size:16px}.live-panel{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:20px;margin-top:16px}.live-panel h2{font-size:16px;margin-bottom:12px;font-weight:600}.live-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:12px}.live-row:last-child{border-bottom:none}.live-label{color:var(--sub);font-family:var(--in)}.live-val{font-family:var(--jb);font-weight:600}footer{border-top:1px solid var(--border);padding:32px 24px;text-align:center}.f-links{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:12px}.f-links a{font-family:var(--in);font-size:11px;color:var(--sub)}.f-links a:hover{color:var(--text)}.f-copy{font-family:var(--jb);font-size:9px;color:var(--muted)}@media(max-width:768px){nav{padding:0 16px}.feature-grid{grid-template-columns:1fr}}</style></head><body>
 <div class="bar"></div>
 <nav><div class="n-left"><div class="n-dot"></div><span class="n-name">RoadWorld</span><span class="n-tag">BLACKROAD OS</span></div><div class="n-right"><a href="https://blackroad.io">Highway</a><a href="https://app.blackroad.io" class="cta">Open OS</a></div></nav>
-<section class="hero"><div class="orb" style="width:400px;height:400px;background:#9C27B0;top:-10%;left:-15%"></div><div class="orb" style="width:300px;height:300px;background:#8844FF;bottom:-5%;right:-10%"></div><div class="badge">LIVE ON BLACKROAD OS</div><h1>Build worlds. Play forever.</h1><p class="sub">16 game systems. Skills, factions, pets, quests, economy. Play now.</p><div class="btns"><button class="btn-p" onclick="showGame()">Play Now</button><button class="btn-g" onclick="showBuilder()">Build a World</button></div></section>
-
-<!-- GAME CLIENT -->
-<div id="game" style="display:none;min-height:100vh;padding:60px 0 0">
-<div style="max-width:900px;margin:0 auto;padding:0 16px">
-
-<!-- Player HUD -->
-<div id="hud" style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap">
-  <div class="feature-card" style="flex:1;min-width:200px;padding:14px">
-    <div style="font-size:10px;color:var(--sub);font-family:var(--jb);margin-bottom:4px">PLAYER</div>
-    <div id="p-name" style="font-size:16px;font-weight:700">Adventurer</div>
-    <div id="p-level" style="font-size:11px;color:var(--sub)">Level 1 | 0 XP</div>
-    <div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden"><div id="p-xp-bar" style="height:100%;background:var(--grad);width:0%;border-radius:2px;transition:width .3s"></div></div>
-  </div>
-  <div class="feature-card" style="flex:1;min-width:140px;padding:14px">
-    <div style="font-size:10px;color:var(--sub);font-family:var(--jb);margin-bottom:4px">STATS</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;font-size:11px">
-      <span style="color:var(--sub)">HP</span><span id="p-hp" style="font-family:var(--jb);color:#22c55e">100/100</span>
-      <span style="color:var(--sub)">ATK</span><span id="p-atk" style="font-family:var(--jb);color:#FF2255">10</span>
-      <span style="color:var(--sub)">DEF</span><span id="p-def" style="font-family:var(--jb);color:#4488FF">5</span>
-      <span style="color:var(--sub)">ROAD</span><span id="p-road" style="font-family:var(--jb);color:#F5A623">0</span>
-    </div>
-  </div>
-  <div class="feature-card" style="flex:1;min-width:140px;padding:14px">
-    <div style="font-size:10px;color:var(--sub);font-family:var(--jb);margin-bottom:4px">FACTION</div>
-    <div id="p-faction" style="font-size:13px;font-weight:600;color:var(--sub)">None</div>
-    <div id="p-faction-motto" style="font-size:10px;color:var(--muted);font-style:italic;margin-top:2px"></div>
-    <div id="faction-join" style="margin-top:6px"></div>
-  </div>
-</div>
-
-<!-- Tab navigation -->
-<div style="display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:16px">
-  <button class="gtab active" data-gt="explore" onclick="gameTab('explore')">Explore</button>
-  <button class="gtab" data-gt="skills" onclick="gameTab('skills')">Skills</button>
-  <button class="gtab" data-gt="quests" onclick="gameTab('quests')">Quests</button>
-  <button class="gtab" data-gt="inventory" onclick="gameTab('inventory')">Inventory</button>
-  <button class="gtab" data-gt="pets" onclick="gameTab('pets')">Pets</button>
-  <button class="gtab" data-gt="achievements" onclick="gameTab('achievements')">Achievements</button>
-  <button class="gtab" data-gt="worlds" onclick="gameTab('worlds')">Worlds</button>
-</div>
-
-<!-- Tab content -->
-<div id="gt-explore" class="gt-panel"></div>
-<div id="gt-skills" class="gt-panel" style="display:none"></div>
-<div id="gt-quests" class="gt-panel" style="display:none"></div>
-<div id="gt-inventory" class="gt-panel" style="display:none"></div>
-<div id="gt-pets" class="gt-panel" style="display:none"></div>
-<div id="gt-achievements" class="gt-panel" style="display:none"></div>
-<div id="gt-worlds" class="gt-panel" style="display:none"></div>
-
-<!-- Game log -->
-<div id="game-log" style="border:1px solid var(--border);border-radius:8px;background:var(--card);margin-top:16px;max-height:200px;overflow-y:auto;padding:12px;font-family:var(--jb);font-size:11px;color:var(--sub)"></div>
-</div>
-</div>
-
-<!-- BUILDER PLACEHOLDER -->
-<div id="builder" style="display:none;min-height:100vh;padding:80px 24px">
-  <div style="max-width:600px;margin:0 auto;text-align:center">
-    <h2 style="font-size:24px;margin-bottom:12px">World Builder</h2>
-    <p style="color:var(--sub);margin-bottom:24px">Create a world from a template, then add objects, NPCs, and quests.</p>
-    <div id="templates-grid" class="feature-grid"></div>
-  </div>
-</div>
-
+<section class="hero"><div class="orb" style="width:400px;height:400px;background:#9C27B0;top:-10%;left:-15%"></div><div class="orb" style="width:300px;height:300px;background:#8844FF;bottom:-5%;right:-10%"></div><div class="badge">LIVE ON BLACKROAD OS</div><h1>Build worlds. Play forever.</h1><p class="sub">Game Engine with NPCs, Quests, Inventory, Economy, and Live Chat. Part of BlackRoad OS — 17 products, one highway.</p><div class="btns"><a href="https://app.blackroad.io"><button class="btn-p">Open BlackRoad OS</button></a><a href="https://blackroad.io"><button class="btn-g">The Highway</button></a></div></section>
 <section class="section">
 <div class="status"><div class="status-dot"></div><div class="status-text" id="st">Connecting...</div></div>
+<div class="feature-grid">
+<div class="feature-card"><div class="feature-icon" style="background:#1a1a2e">&#x1F30D;</div><h3>World Builder</h3><p>Create worlds from 8 templates. Place objects, wire logic, publish games. AI-generated descriptions.</p></div>
+<div class="feature-card"><div class="feature-icon" style="background:#1a2e1a">&#x1F9D9;</div><h3>NPC System</h3><p>AI-powered NPCs with personalities, dialog trees, and dynamic behavior. Bring your worlds to life.</p></div>
+<div class="feature-card"><div class="feature-icon" style="background:#2e1a1a">&#x2694;</div><h3>Quest Engine</h3><p>Create quests with objectives, rewards, and branching paths. Earn RoadCoin for completing challenges.</p></div>
+<div class="feature-card"><div class="feature-icon" style="background:#1a1a2e">&#x1F392;</div><h3>Inventory + Crafting</h3><p>Collect items, craft gear, trade with other players. Full item economy with rarity tiers.</p></div>
+<div class="feature-card"><div class="feature-icon" style="background:#2e2e1a">&#x1F4AC;</div><h3>World Chat</h3><p>Talk to other players in-world. Chat stays local to each world for immersive multiplayer.</p></div>
+<div class="feature-card"><div class="feature-icon" style="background:#1a2e2e">&#x26C5;</div><h3>Weather + Day/Night</h3><p>Dynamic environment with weather effects, day/night cycle, seasons, and atmospheric conditions.</p></div>
+<div class="feature-card"><div class="feature-icon" style="background:#2e1a2e">&#x1F3C6;</div><h3>Achievements</h3><p>Unlock achievements for milestones. Track progress, earn badges, and compare with the leaderboard.</p></div>
+<div class="feature-card"><div class="feature-icon" style="background:#2e2e1a">&#x1FA99;</div><h3>RoadCoin Economy</h3><p>Earn ROAD for quests, trading, achievements. Spend on items, upgrades, and world customization.</p></div>
+</div>
 <div class="live-panel"><h2>Live Stats</h2><div id="live-stats"><div class="live-row"><span class="live-label">Loading...</span></div></div></div>
 </section>
 <footer><div class="f-links"><a href="https://os.blackroad.io">OS</a><a href="https://roadtrip.blackroad.io">Agents</a><a href="https://roadie.blackroad.io">Tutor</a><a href="https://roadview.blackroad.io">Search</a><a href="https://backroad.blackroad.io">Social</a><a href="https://roadchain.blackroad.io">Chain</a><a href="https://github.com/BlackRoadOS">GitHub</a></div><div class="f-copy">2025-2026 BlackRoad OS, Inc. Remember the Road. Pave Tomorrow.</div></footer>
-<style>
-.gtab{flex:1;padding:10px 12px;font-size:12px;font-weight:500;color:var(--sub);background:var(--card);border:none;cursor:pointer;font-family:var(--sg);transition:all .15s;border-right:1px solid var(--border)}
-.gtab:last-child{border-right:none}
-.gtab:hover{color:var(--text);background:var(--bg)}
-.gtab.active{color:var(--text);background:var(--bg);font-weight:600}
-.skill-card{border:1px solid var(--border);border-radius:6px;background:var(--card);padding:12px;cursor:pointer;transition:border-color .15s}
-.skill-card:hover{border-color:#8844FF}
-.skill-card.locked{opacity:.4}
-.skill-card.learned{border-color:#22c55e}
-.ach-card{display:flex;align-items:center;gap:12px;padding:12px;border:1px solid var(--border);border-radius:6px;background:var(--card)}
-.ach-card.earned{border-color:#F5A623}
-.ach-icon{width:36px;height:36px;border-radius:8px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.ach-card.earned .ach-icon{background:rgba(245,166,35,.1);border-color:#F5A623}
-.pet-card{border:1px solid var(--border);border-radius:8px;background:var(--card);padding:16px;text-align:center;cursor:pointer;transition:border-color .15s}
-.pet-card:hover{border-color:#CC00AA}
-.pet-sprite{font-size:32px;margin-bottom:8px}
-.explore-tile{width:48px;height:48px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:18px;cursor:pointer;transition:transform .1s;border:1px solid transparent}
-.explore-tile:hover{transform:scale(1.1);border-color:rgba(255,255,255,.1)}
-.explore-tile.player{border:2px solid #FF2255;background:rgba(255,34,85,.1)}
-</style>
 <script>
-// ── Game State (localStorage persisted) ──
-var GS;
-try { GS = JSON.parse(localStorage.getItem('rw-save')) || null; } catch(e){ GS=null; }
-if(!GS) GS = {name:'Adventurer',level:1,xp:0,hp:100,maxHp:100,atk:10,def:5,road:0,faction:null,skills:[],inventory:[],pets:[],achievements:[],pos:{x:4,y:4},world:'overworld'};
-function saveGame(){ try{localStorage.setItem('rw-save',JSON.stringify(GS))}catch(e){} }
-
-// ── Game Log ──
-function glog(msg,color){
-  var el=document.getElementById('game-log');
-  if(!el)return;
-  var d=document.createElement('div');
-  d.style.color=color||'var(--sub)';
-  d.textContent='> '+msg;
-  el.appendChild(d);
-  el.scrollTop=el.scrollHeight;
-}
-
-// ── Update HUD ──
-function updateHUD(){
-  document.getElementById('p-name').textContent=GS.name;
-  document.getElementById('p-level').textContent='Level '+GS.level+' | '+GS.xp+' XP';
-  document.getElementById('p-xp-bar').style.width=Math.min(100,Math.round((GS.xp%100)))+'%';
-  document.getElementById('p-hp').textContent=GS.hp+'/'+GS.maxHp;
-  document.getElementById('p-atk').textContent=GS.atk;
-  document.getElementById('p-def').textContent=GS.def;
-  document.getElementById('p-road').textContent=GS.road.toFixed(1);
-  document.getElementById('p-faction').textContent=GS.faction?GS.faction.name:'None';
-  document.getElementById('p-faction-motto').textContent=GS.faction?GS.faction.motto:'Join a faction for bonuses';
-  saveGame();
-}
-
-// ── Tab switching ──
-function gameTab(id){
-  document.querySelectorAll('.gtab').forEach(function(t){t.classList.toggle('active',t.dataset.gt===id)});
-  document.querySelectorAll('.gt-panel').forEach(function(p){p.style.display='none'});
-  document.getElementById('gt-'+id).style.display='';
-  if(id==='skills') loadSkills();
-  if(id==='achievements') loadAchievements();
-  if(id==='pets') loadPets();
-  if(id==='explore') renderMap();
-  if(id==='quests') loadQuests();
-  if(id==='inventory') renderInventory();
-  if(id==='worlds') loadWorlds();
-}
-
-// ── EXPLORE TAB — tile-based map ──
-var MAP_SIZE=10;
-var MAP_TILES=[
-  '&#127794;','&#127795;','&#127793;','&#9968;','&#127806;','&#128567;','&#9962;','&#128176;','&#128142;','&#9876;',
-  '&#127794;','&#127794;','&#127795;','&#127793;','&#127794;','&#127795;','&#127793;','&#127794;','&#127795;','&#127793;'
-];
-function renderMap(){
-  var el=document.getElementById('gt-explore');
-  var html='<div style="margin-bottom:12px;display:flex;align-items:center;gap:12px"><span style="font-size:14px;font-weight:600">Overworld</span><span style="font-size:11px;color:var(--sub)">Use arrow keys or click to move. Step on tiles to discover items.</span></div>';
-  html+='<div style="display:grid;grid-template-columns:repeat('+MAP_SIZE+',48px);gap:2px;margin-bottom:16px">';
-  for(var my=0;my<MAP_SIZE;my++){
-    for(var mx=0;mx<MAP_SIZE;mx++){
-      var isPlayer=mx===GS.pos.x&&my===GS.pos.y;
-      var seed=(mx*7+my*13)%MAP_TILES.length;
-      var tile=isPlayer?'&#129489;':MAP_TILES[seed];
-      html+='<div class="explore-tile'+(isPlayer?' player':'')+'" onclick="movePlayer('+mx+','+my+')" style="background:'+(isPlayer?'rgba(255,34,85,.05)':'var(--card)')+'" data-x="'+mx+'" data-y="'+my+'">'+tile+'</div>';
-    }
-  }
-  html+='</div>';
-  html+='<div style="display:flex;gap:8px"><button class="btn-g" onclick="exploreAction()" style="font-size:12px;padding:8px 16px">Search Area</button><button class="btn-g" onclick="restAction()" style="font-size:12px;padding:8px 16px">Rest (+20 HP)</button><button class="btn-g" onclick="fightAction()" style="font-size:12px;padding:8px 16px">Fight Monster</button></div>';
-  el.innerHTML=html;
-}
-function movePlayer(x,y){
-  if(Math.abs(x-GS.pos.x)+Math.abs(y-GS.pos.y)>2){glog('Too far! Move to adjacent tiles.','#FF2255');return;}
-  GS.pos.x=x;GS.pos.y=y;
-  GS.xp+=1;
-  checkLevelUp();
-  glog('Moved to ('+x+','+y+')');
-  renderMap();updateHUD();
-}
-function exploreAction(){
-  var roll=Math.random();
-  if(roll<.3){var coins=Math.round(Math.random()*5+1)/10;GS.road+=coins;glog('Found '+coins+' ROAD!','#F5A623');}
-  else if(roll<.5){GS.xp+=5;glog('Discovered a hidden path! +5 XP','#22c55e');}
-  else if(roll<.65){var item={name:['Iron Sword','Leather Shield','Health Potion','Map Fragment','Ancient Rune'][Math.floor(Math.random()*5)],rarity:['common','uncommon','rare'][Math.floor(Math.random()*3)]};GS.inventory.push(item);glog('Found: '+item.name+' ('+item.rarity+')','#8844FF');}
-  else{glog('Nothing here. Keep exploring.','var(--muted)');}
-  GS.xp+=2;checkLevelUp();updateHUD();
-}
-function restAction(){
-  GS.hp=Math.min(GS.maxHp,GS.hp+20);
-  glog('Rested. HP restored to '+GS.hp+'/'+GS.maxHp,'#22c55e');
-  updateHUD();
-}
-function fightAction(){
-  var monster={name:['Slime','Goblin','Wolf','Bandit','Dark Knight'][Math.floor(Math.random()*5)],hp:10+GS.level*5,atk:3+GS.level*2};
-  glog('A wild '+monster.name+' appears! (HP:'+monster.hp+' ATK:'+monster.atk+')','#FF2255');
-  // Simple combat
-  while(monster.hp>0&&GS.hp>0){
-    var dmg=Math.max(1,GS.atk-Math.floor(Math.random()*3));
-    monster.hp-=dmg;
-    if(monster.hp<=0){
-      var xpGain=5+GS.level*2;
-      var coinGain=Math.round((Math.random()*3+1)*10)/100;
-      GS.xp+=xpGain;GS.road+=coinGain;
-      glog('Defeated '+monster.name+'! +'+xpGain+' XP, +'+coinGain+' ROAD','#22c55e');
-      break;
-    }
-    var mDmg=Math.max(1,monster.atk-GS.def+Math.floor(Math.random()*3));
-    GS.hp-=mDmg;
-    if(GS.hp<=0){GS.hp=1;glog('Defeated by '+monster.name+'! You barely survive with 1 HP.','#FF2255');break;}
-  }
-  checkLevelUp();updateHUD();
-}
-function checkLevelUp(){
-  var needed=GS.level*100;
-  while(GS.xp>=needed){
-    GS.level++;GS.maxHp+=10;GS.hp=GS.maxHp;GS.atk+=2;GS.def+=1;
-    glog('LEVEL UP! Now level '+GS.level+'. HP/ATK/DEF increased!','#F5A623');
-    needed=GS.level*100;
-  }
-}
-
-// ── SKILLS TAB ──
-function loadSkills(){
-  fetch('/api/skills').then(function(r){return r.json()}).then(function(d){
-    var el=document.getElementById('gt-skills');
-    var html='';
-    Object.keys(d.skill_trees||{}).forEach(function(tree){
-      var t=d.skill_trees[tree];
-      html+='<div style="margin-bottom:20px"><div style="font-size:14px;font-weight:600;margin-bottom:8px">'+t.name+' <span style="font-size:11px;color:var(--sub)">'+t.description+'</span></div>';
-      html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">';
-      (t.skills||[]).forEach(function(s){
-        var learned=GS.skills.indexOf(s.id)!==-1;
-        var canLearn=GS.level>=s.level_req&&!learned&&s.prereqs.every(function(p){return GS.skills.indexOf(p)!==-1});
-        html+='<div class="skill-card'+(learned?' learned':'')+((!canLearn&&!learned)?' locked':'')+'" onclick="'+(canLearn?'learnSkill(\\''+s.id+'\\','+JSON.stringify(s.bonus).replace(/"/g,"'")+','+s.xp_cost+')':'')+'">';
-        html+='<div style="font-size:12px;font-weight:600;color:'+(learned?'#22c55e':'var(--text)')+'">'+s.name+'</div>';
-        html+='<div style="font-size:10px;color:var(--sub);margin-top:2px">Lv.'+s.level_req+' | '+s.xp_cost+' XP</div>';
-        var bonusText=Object.entries(s.bonus).map(function(e){return'+'+e[1]+' '+e[0]}).join(', ');
-        html+='<div style="font-size:10px;color:#8844FF;margin-top:2px">'+bonusText+'</div>';
-        if(learned) html+='<div style="font-size:9px;color:#22c55e;margin-top:4px">LEARNED</div>';
-        else if(canLearn) html+='<div style="font-size:9px;color:#F5A623;margin-top:4px">CLICK TO LEARN</div>';
-        html+='</div>';
-      });
-      html+='</div></div>';
-    });
-    el.innerHTML=html;
-  });
-}
-function learnSkill(id,bonus,cost){
-  if(GS.xp<cost){glog('Not enough XP! Need '+cost,'#FF2255');return;}
-  GS.skills.push(id);GS.xp-=cost;
-  if(bonus.attack)GS.atk+=bonus.attack;
-  if(bonus.defense)GS.def+=bonus.defense;
-  if(bonus.health)GS.maxHp+=bonus.health;
-  glog('Learned skill: '+id+'!','#22c55e');
-  updateHUD();loadSkills();
-}
-
-// ── ACHIEVEMENTS TAB ──
-function loadAchievements(){
-  fetch('/api/achievements').then(function(r){return r.json()}).then(function(d){
-    var el=document.getElementById('gt-achievements');
-    var html='<div style="display:grid;gap:8px">';
-    (d.available||[]).forEach(function(a){
-      var earned=GS.achievements.indexOf(a.id)!==-1;
-      html+='<div class="ach-card'+(earned?' earned':'')+'">';
-      html+='<div class="ach-icon">'+(earned?'&#127942;':'&#128274;')+'</div>';
-      html+='<div><div style="font-size:13px;font-weight:600;color:'+(earned?'#F5A623':'var(--text)')+'">'+a.name+'</div>';
-      html+='<div style="font-size:11px;color:var(--sub)">'+a.description+'</div>';
-      html+='<div style="font-size:10px;color:'+(earned?'#22c55e':'var(--muted)');
-      html+=';margin-top:2px">'+(earned?'EARNED':'Reward: '+a.reward_road+' ROAD')+'</div>';
-      html+='</div></div>';
-    });
-    html+='</div>';
-    el.innerHTML=html;
-  });
-}
-
-// ── PETS TAB ──
-function loadPets(){
-  fetch('/api/pets?owner=demo').then(function(r){return r.json()}).then(function(d){
-    var el=document.getElementById('gt-pets');
-    var sprites={wolf:'&#128058;',phoenix:'&#128038;',dragon:'&#128009;',golem:'&#129689;',sprite:'&#10024;',serpent:'&#128013;',gryphon:'&#129413;'};
-    var html='<div style="font-size:14px;font-weight:600;margin-bottom:12px">Your Pets ('+GS.pets.length+')</div>';
-    if(GS.pets.length>0){
-      html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:20px">';
-      GS.pets.forEach(function(p){html+='<div class="pet-card"><div class="pet-sprite">'+(sprites[p.species]||'&#128062;')+'</div><div style="font-size:12px;font-weight:600">'+p.name+'</div><div style="font-size:10px;color:var(--sub)">Lv.'+p.level+'</div></div>';});
-      html+='</div>';
-    }
-    html+='<div style="font-size:14px;font-weight:600;margin-bottom:12px">Available Species</div>';
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px">';
-    (d.available_species||[]).forEach(function(s){
-      html+='<div class="pet-card" onclick="adoptPet(\\''+s.id+'\\',\\''+s.name+'\\')">';
-      html+='<div class="pet-sprite">'+(sprites[s.id]||'&#128062;')+'</div>';
-      html+='<div style="font-size:12px;font-weight:600">'+s.name+'</div>';
-      html+='<div style="font-size:10px;color:var(--sub)">'+s.element+' | ATK:'+s.base_stats.attack+' DEF:'+s.base_stats.defense+'</div>';
-      html+='<div style="font-size:9px;color:#F5A623;margin-top:4px">CLICK TO ADOPT</div>';
-      html+='</div>';
-    });
-    html+='</div>';
-    el.innerHTML=html;
-  });
-}
-function adoptPet(species,name){
-  if(GS.road<0.5){glog('Need 0.5 ROAD to adopt a pet!','#FF2255');return;}
-  GS.road-=0.5;
-  GS.pets.push({species:species,name:name,level:1});
-  glog('Adopted '+name+'!','#CC00AA');
-  updateHUD();loadPets();
-}
-
-// ── INVENTORY TAB ──
-function renderInventory(){
-  var el=document.getElementById('gt-inventory');
-  var html='<div style="font-size:14px;font-weight:600;margin-bottom:12px">Inventory ('+GS.inventory.length+' items)</div>';
-  if(GS.inventory.length===0) html+='<div style="color:var(--sub);font-size:12px">No items yet. Explore to find loot!</div>';
-  else{
-    html+='<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px">';
-    GS.inventory.forEach(function(item,i){
-      var rc={common:'var(--sub)',uncommon:'#22c55e',rare:'#8844FF',legendary:'#F5A623'};
-      html+='<div class="feature-card" style="padding:10px"><div style="font-size:12px;font-weight:600">'+item.name+'</div><div style="font-size:10px;color:'+(rc[item.rarity]||'var(--sub)')+'">'+item.rarity+'</div></div>';
-    });
-    html+='</div>';
-  }
-  el.innerHTML=html;
-}
-
-// ── QUESTS TAB ──
-function loadQuests(){
-  var el=document.getElementById('gt-quests');
-  var quests=[
-    {id:'explore_10',name:'Explorer',desc:'Move 10 times on the map',target:10,check:function(){return Math.min(10,GS.xp/3)},reward:1},
-    {id:'fighter_5',name:'Monster Slayer',desc:'Reach level 5',target:5,check:function(){return GS.level},reward:2},
-    {id:'collector',name:'Collector',desc:'Find 5 items',target:5,check:function(){return GS.inventory.length},reward:1.5},
-    {id:'social',name:'Join the Guild',desc:'Join a faction',target:1,check:function(){return GS.faction?1:0},reward:0.5},
-    {id:'pet_owner',name:'Pet Owner',desc:'Adopt a pet',target:1,check:function(){return GS.pets.length},reward:0.5},
-  ];
-  var html='<div style="display:grid;gap:8px">';
-  quests.forEach(function(q){
-    var progress=q.check();
-    var pct=Math.min(100,Math.round(progress/q.target*100));
-    var done=progress>=q.target;
-    html+='<div class="ach-card'+(done?' earned':'')+'">';
-    html+='<div class="ach-icon">'+(done?'&#9989;':'&#128203;')+'</div>';
-    html+='<div style="flex:1"><div style="font-size:13px;font-weight:600">'+q.name+'</div>';
-    html+='<div style="font-size:11px;color:var(--sub)">'+q.desc+'</div>';
-    html+='<div style="height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden"><div style="height:100%;width:'+pct+'%;background:'+(done?'#22c55e':'var(--grad)')+';border-radius:2px"></div></div>';
-    html+='<div style="font-size:10px;color:var(--muted);margin-top:2px">'+Math.round(progress)+'/'+q.target+(done?' | Reward: '+q.reward+' ROAD claimed':'')+'</div>';
-    html+='</div></div>';
-  });
-  html+='</div>';
-  el.innerHTML=html;
-}
-
-// ── WORLDS TAB ──
-function loadWorlds(){
-  fetch('/api/worlds').then(function(r){return r.json()}).then(function(d){
-    var el=document.getElementById('gt-worlds');
-    var worlds=d.worlds||[];
-    var html='<div style="display:flex;gap:12px;margin-bottom:16px"><button class="btn-p" onclick="createWorld()" style="font-size:12px;padding:8px 16px">Create World</button></div>';
-    if(worlds.length===0) html+='<div style="color:var(--sub);font-size:12px">No worlds yet. Create one!</div>';
-    else{
-      html+='<div class="feature-grid">';
-      worlds.forEach(function(w){
-        html+='<div class="feature-card"><h3>'+w.name+'</h3><p style="font-size:11px;color:var(--sub)">'+(w.description||'A world')+'</p><p style="font-size:10px;color:var(--muted);margin-top:4px">'+w.template+' | '+(w.published?'Published':'Draft')+'</p></div>';
-      });
-      html+='</div>';
-    }
-    el.innerHTML=html;
-  });
-}
-function createWorld(){
-  var name=prompt('World name:');
-  if(!name)return;
-  fetch('/api/worlds',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,template:'fantasy',creator:'player'})}).then(function(r){return r.json()}).then(function(d){
-    glog('Created world: '+name,'#22c55e');
-    loadWorlds();
-  }).catch(function(){glog('Failed to create world','#FF2255')});
-}
-
-// ── FACTION JOINING ──
-function loadFactions(){
-  fetch('/api/factions').then(function(r){return r.json()}).then(function(d){
-    var el=document.getElementById('faction-join');
-    if(GS.faction){el.innerHTML='';return;}
-    var types=d.faction_types||[];
-    el.innerHTML=types.slice(0,3).map(function(f){
-      return '<button class="btn-g" onclick="joinFaction(\\''+f.id+'\\',\\''+f.name+'\\',\\''+f.motto+'\\')" style="font-size:9px;padding:4px 8px;margin:2px">'+f.name+'</button>';
-    }).join('');
-  });
-}
-function joinFaction(id,name,motto){
-  GS.faction={id:id,name:name,motto:motto};
-  glog('Joined '+name+'! "'+motto+'"','#F5A623');
-  updateHUD();loadFactions();
-}
-
-// ── Arrow key movement ──
-document.addEventListener('keydown',function(e){
-  if(document.getElementById('game').style.display==='none')return;
-  if(e.target.matches('input,textarea'))return;
-  var moved=false;
-  if(e.key==='ArrowUp'&&GS.pos.y>0){GS.pos.y--;moved=true;}
-  if(e.key==='ArrowDown'&&GS.pos.y<MAP_SIZE-1){GS.pos.y++;moved=true;}
-  if(e.key==='ArrowLeft'&&GS.pos.x>0){GS.pos.x--;moved=true;}
-  if(e.key==='ArrowRight'&&GS.pos.x<MAP_SIZE-1){GS.pos.x++;moved=true;}
-  if(moved){e.preventDefault();GS.xp+=1;checkLevelUp();renderMap();updateHUD();}
-});
-
-// ── Show/hide sections ──
-function showGame(){
-  document.querySelector('.hero').style.display='none';
-  document.getElementById('game').style.display='';
-  document.getElementById('builder').style.display='none';
-  updateHUD();renderMap();loadFactions();
-  glog('Welcome to RoadWorld, '+GS.name+'! Level '+GS.level+'. Explore, fight, collect.','#8844FF');
-}
-function showBuilder(){
-  document.querySelector('.hero').style.display='none';
-  document.getElementById('game').style.display='none';
-  document.getElementById('builder').style.display='';
-  loadTemplates();
-}
-function loadTemplates(){
-  var templates=[
-    {id:'fantasy',name:'Fantasy Kingdom',icon:'&#127984;',desc:'Medieval castles, forests, dragons'},
-    {id:'scifi',name:'Space Station',icon:'&#128640;',desc:'Sci-fi corridors, zero-G, alien tech'},
-    {id:'ocean',name:'Ocean World',icon:'&#127754;',desc:'Underwater caves, coral reefs, sea monsters'},
-    {id:'city',name:'Cyberpunk City',icon:'&#127961;',desc:'Neon streets, megacorps, hackers'},
-    {id:'dungeon',name:'Dark Dungeon',icon:'&#128128;',desc:'Deep caves, traps, treasure'},
-    {id:'island',name:'Tropical Island',icon:'&#127965;',desc:'Beaches, palm trees, buried treasure'},
-  ];
-  document.getElementById('templates-grid').innerHTML=templates.map(function(t){
-    return '<div class="feature-card" style="cursor:pointer" onclick="createWorldFromTemplate(\\''+t.id+'\\')"><div class="feature-icon" style="background:var(--bg);font-size:24px">'+t.icon+'</div><h3>'+t.name+'</h3><p>'+t.desc+'</p></div>';
-  }).join('');
-}
-function createWorldFromTemplate(template){
-  var name=prompt('Name your world:');
-  if(!name)return;
-  fetch('/api/worlds',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:name,template:template,creator:'player'})}).then(function(r){return r.json()}).then(function(d){
-    alert('World "'+name+'" created! Switch to Play mode to explore.');
-    showGame();
-  });
-}
-
-// ── Boot ──
-fetch('/api/health').then(function(r){return r.json()}).then(function(d){document.getElementById('st').textContent='RoadWorld is live — '+d.systems_online+' systems online'}).catch(function(){document.getElementById('st').textContent='RoadWorld is running'});
-fetch('/api/stats').then(function(r){return r.json()}).then(function(d){
-  var el=document.getElementById('live-stats');
+fetch('/api/health').then(r=>r.json()).then(d=>{document.getElementById('st').textContent='RoadWorld is live — '+d.systems_online+' systems online'}).catch(()=>{document.getElementById('st').textContent='RoadWorld is running'});
+fetch('/api/stats').then(r=>r.json()).then(d=>{
+  const el=document.getElementById('live-stats');
   el.innerHTML=[
     ['Worlds',d.worlds],['Published Games',d.published_games],['Players',d.unique_players],
     ['Total Plays',d.total_plays],['Objects Placed',d.total_objects],['NPCs',d.total_npcs||0],
     ['Active Quests',d.active_quests||0],['Achievements',d.total_achievements||0],
     ['Templates',d.templates_available],['Agents',d.agents?.length||4]
-  ].map(function(e){return '<div class="live-row"><span class="live-label">'+e[0]+'</span><span class="live-val">'+e[1]+'</span></div>'}).join('');
-}).catch(function(){});
+  ].map(([l,v])=>'<div class="live-row"><span class="live-label">'+l+'</span><span class="live-val">'+v+'</span></div>').join('');
+}).catch(()=>{});
+window.addEventListener('message',function(e){if(e.data</script></script>e.data.type==='blackroad-os:context'){window._osUser=e.data.user;window._osToken=e.data.token;}});if(window.parent!==window)window.parent.postMessage({type:'blackroad-os:request-context'},'*');
 </script>
+<script>(function(){var d={path:location.pathname,ref:document.referrer,w:screen.width,h:screen.height,t:Date.now()};navigator.sendBeacon&&navigator.sendBeacon('/api/analytics',JSON.stringify(d))})()</script><script>!function(){var b=document.createElement("div");b.style.cssText="position:fixed;top:0;left:0;right:0;z-index:99999;background:#0a0a0a;border-bottom:1px solid #1a1a1a;padding:6px 16px;display:flex;align-items:center;justify-content:space-between;font-family:sans-serif";b.innerHTML='<span style="font-size:11px;color:#737373">Part of <a href="https://os.blackroad.io" style="color:#f5f5f5;font-weight:600;text-decoration:none">BlackRoad OS</a></span><a href="https://os.blackroad.io" style="font-size:10px;font-weight:600;padding:4px 12px;background:#f5f5f5;color:#000;border-radius:4px;text-decoration:none">Try Free</a>';b.id="br-bar";if(!document.getElementById("br-bar")){document.body.prepend(b);document.body.style.paddingTop=(parseInt(getComputedStyle(document.body).paddingTop)||0)+32+"px"}}();</script>
 </body></html>`;
 
 // ─── Agent Personalities ───
@@ -1207,9 +794,125 @@ export default {
     const path = url.pathname;
     const method = request.method;
 
+        if (path === '/v2') {
+      try {
+        const html = await env.STORE.get('roadworld-3d', 'text');
+        if (html) return new Response(html, { headers: { ...CORS, 'Content-Type': 'text/html;charset=UTF-8' } });
+      } catch {}
+    }
     if (path === "/" || path === "") return new Response(ROOT_HTML, { headers: { ...CORS, "Content-Type": "text/html;charset=UTF-8" } });
-    if (path === '/sitemap.xml') return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://roadworld.blackroad.io/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>\n</urlset>`, { headers: { 'Content-Type': 'application/xml', ...CORS } });
+
+    // ── CREATION GUIDES (crawlable content) ──
+    const CREATION_GUIDES = [
+      { slug: 'first-world', name: 'Your First World', category: 'Getting Started', description: 'Create your first game world in RoadWorld with a step-by-step walkthrough from template selection to publishing.', concepts: ['World templates', 'Object placement', 'World settings', 'Publishing'], difficulty: 'beginner', related: ['terrain-basics', 'npc-placement', 'publish-and-share'] },
+      { slug: 'terrain-basics', name: 'Terrain Basics', category: 'World Building', description: 'Shape your world with terrain tools: elevation, biomes, water, paths, and natural formations.', concepts: ['Height maps', 'Biome painting', 'Water placement', 'Path drawing', 'Erosion effects'], difficulty: 'beginner', related: ['first-world', 'lighting-moods', 'tilemap-editor'] },
+      { slug: 'npc-placement', name: 'NPC Placement', category: 'World Building', description: 'Populate your world with AI-powered NPCs that have personalities, dialog trees, and dynamic behavior.', concepts: ['NPC personality types', 'Dialog trees', 'Patrol routes', 'Behavior triggers', 'AI conversations'], difficulty: 'intermediate', related: ['quest-design', 'scripting-events', 'first-world'] },
+      { slug: 'physics-setup', name: 'Physics Setup', category: 'Game Mechanics', description: 'Configure gravity, collision detection, projectile physics, and movement systems for your game world.', concepts: ['Gravity settings', 'Collision layers', 'Projectile trajectories', 'Friction and bounce', 'Ragdoll physics'], difficulty: 'intermediate', related: ['terrain-basics', 'animation-basics', 'multiplayer-setup'] },
+      { slug: 'lighting-moods', name: 'Lighting and Moods', category: 'Polish', description: 'Set the atmosphere of your world with dynamic lighting, day/night cycles, weather effects, and color palettes.', concepts: ['Ambient lighting', 'Point lights', 'Day/night cycle', 'Weather integration', 'Color temperature', 'Shadow casting'], difficulty: 'intermediate', related: ['terrain-basics', 'sound-design', 'pixel-art-sprites'] },
+      { slug: 'inventory-system', name: 'Inventory System', category: 'Game Mechanics', description: 'Build item systems with inventories, loot tables, rarity tiers, crafting recipes, and equipment slots.', concepts: ['Item definitions', 'Rarity tiers', 'Loot tables', 'Crafting recipes', 'Equipment slots', 'Stack limits'], difficulty: 'intermediate', related: ['economy-balance', 'quest-design', 'npc-placement'] },
+      { slug: 'quest-design', name: 'Quest Design', category: 'Game Mechanics', description: 'Create engaging quests with objectives, branching paths, dialog choices, rewards, and completion tracking.', concepts: ['Quest objectives', 'Branching paths', 'Dialog choices', 'Reward systems', 'Prerequisite chains', 'Completion tracking'], difficulty: 'intermediate', related: ['npc-placement', 'inventory-system', 'scripting-events'] },
+      { slug: 'multiplayer-setup', name: 'Multiplayer Setup', category: 'Game Mechanics', description: 'Enable real-time multiplayer in your world with player synchronization, chat, trading, and cooperative gameplay.', concepts: ['Player synchronization', 'World chat', 'Player trading', 'Co-op mechanics', 'PvP zones', 'Spectator mode'], difficulty: 'advanced', related: ['physics-setup', 'economy-balance', 'publish-and-share'] },
+      { slug: 'economy-balance', name: 'Economy Balance', category: 'Game Mechanics', description: 'Design a balanced in-game economy with currency sinks, reward curves, marketplace pricing, and inflation control.', concepts: ['Currency sources', 'Currency sinks', 'Reward curves', 'Marketplace pricing', 'Inflation control', 'RoadCoin integration'], difficulty: 'advanced', related: ['inventory-system', 'quest-design', 'multiplayer-setup'] },
+      { slug: 'sound-design', name: 'Sound Design', category: 'Polish', description: 'Add ambient soundscapes, music layers, sound effects, and spatial audio to create immersive game worlds.', concepts: ['Ambient loops', 'Music layers', 'Sound effects', 'Spatial audio', 'Volume zones', 'Dynamic mixing'], difficulty: 'intermediate', related: ['lighting-moods', 'animation-basics', 'terrain-basics'] },
+      { slug: 'pixel-art-sprites', name: 'Pixel Art Sprites', category: 'Polish', description: 'Create and import pixel art sprites for characters, items, terrain tiles, and UI elements in your game world.', concepts: ['Sprite sheets', 'Animation frames', 'Color palettes', 'Tile sizes', 'Import formats', 'Character design'], difficulty: 'beginner', related: ['tilemap-editor', 'animation-basics', 'lighting-moods'] },
+      { slug: 'tilemap-editor', name: 'Tilemap Editor', category: 'World Building', description: 'Use the tilemap editor to paint environments tile by tile, with auto-tiling rules and layer management.', concepts: ['Tile layers', 'Auto-tiling rules', 'Collision tiles', 'Decorative layers', 'Tileset import', 'Brush tools'], difficulty: 'beginner', related: ['terrain-basics', 'pixel-art-sprites', 'first-world'] },
+      { slug: 'animation-basics', name: 'Animation Basics', category: 'Polish', description: 'Animate characters, NPCs, items, and environment elements with frame-based and tween-based animation systems.', concepts: ['Frame animation', 'Tween animation', 'State machines', 'Blend trees', 'Particle effects', 'Camera animation'], difficulty: 'intermediate', related: ['pixel-art-sprites', 'physics-setup', 'scripting-events'] },
+      { slug: 'scripting-events', name: 'Scripting Events', category: 'Game Mechanics', description: 'Wire game logic with the visual event scripting system. Trigger actions, conditions, and sequences without code.', concepts: ['Event triggers', 'Condition nodes', 'Action sequences', 'Variable storage', 'Timer events', 'Custom events'], difficulty: 'advanced', related: ['quest-design', 'npc-placement', 'animation-basics'] },
+      { slug: 'publish-and-share', name: 'Publish and Share', category: 'Getting Started', description: 'Publish your finished world for others to play, earn RoadCoin from plays, and share on social platforms.', concepts: ['World publishing', 'Thumbnail generation', 'Description writing', 'Category tagging', 'Play tracking', 'Earning RoadCoin'], difficulty: 'beginner', related: ['first-world', 'multiplayer-setup', 'economy-balance'] },
+    ];
+
+    const difficultyColors = { beginner: '#22c55e', intermediate: '#F5A623', advanced: '#FF2255' };
+
+    if (path === '/create') {
+      const indexHtml = `<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Creation Guides — RoadWorld | BlackRoad OS</title>
+<meta name="description" content="Learn to build game worlds in RoadWorld. Guides on terrain, NPCs, quests, multiplayer, pixel art, scripting, and publishing your games.">
+<meta property="og:title" content="Creation Guides — RoadWorld | BlackRoad OS"><meta property="og:description" content="Learn to build game worlds in RoadWorld. 15+ guides from beginner terrain to advanced scripting.">
+<meta property="og:url" content="https://roadworld.blackroad.io/create"><meta property="og:image" content="https://images.blackroad.io/pixel-art/road-logo.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow, noai, noimageai">
+<link rel="canonical" href="https://roadworld.blackroad.io/create">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"Creation Guides","url":"https://roadworld.blackroad.io/create","description":"Learn to build game worlds in RoadWorld","publisher":{"@type":"Organization","name":"BlackRoad OS, Inc.","url":"https://blackroad.io"}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#000;--surface:#0a0a0a;--border:#1a1a1a;--text:#f5f5f5;--dim:#737373;--accent:#9C27B0}body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding:20px}.wrap{max-width:900px;margin:0 auto}h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(28px,5vw,48px);margin-bottom:8px}p.sub{color:var(--dim);margin-bottom:32px;line-height:1.6}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:20px;transition:border-color .2s}.card:hover{border-color:#333}.card h2{font-family:'Space Grotesk',sans-serif;font-size:16px;margin-bottom:4px}.card .cat{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px}.card .diff{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;margin-top:8px}.card p{font-size:13px;color:var(--dim);line-height:1.5}a{color:inherit;text-decoration:none}nav.top{margin-bottom:24px;font-size:13px;color:var(--dim)}nav.top a{color:var(--accent)}</style></head><body><div class="wrap">
+<nav class="top"><a href="/">RoadWorld</a> / Create</nav>
+<h1>Creation Guides</h1>
+<p class="sub">Build worlds, design games, and publish for others to play. From your first world to advanced scripting and multiplayer.</p>
+<div class="grid">${CREATION_GUIDES.map(g => `<a href="/create/${g.slug}"><div class="card"><div class="cat">${g.category}</div><h2>${g.name}</h2><p>${g.description}</p><div class="diff" style="color:${difficultyColors[g.difficulty]}">${g.difficulty}</div></div></a>`).join('')}</div>
+</div></body></html>`;
+      return new Response(indexHtml, { headers: { ...CORS, 'Content-Type': 'text/html;charset=UTF-8' } });
+    }
+
+    if (path.startsWith('/create/')) {
+      const slug = path.replace('/create/', '').replace(/\/$/, '');
+      const guide = CREATION_GUIDES.find(g => g.slug === slug);
+      if (guide) {
+        const related = guide.related.map(r => CREATION_GUIDES.find(g => g.slug === r)).filter(Boolean);
+        const guideHtml = `<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${guide.name} — RoadWorld | BlackRoad OS</title>
+<meta name="description" content="${guide.description}">
+<meta property="og:title" content="${guide.name} — RoadWorld | BlackRoad OS"><meta property="og:description" content="${guide.description}">
+<meta property="og:url" content="https://roadworld.blackroad.io/create/${guide.slug}"><meta property="og:image" content="https://images.blackroad.io/pixel-art/road-logo.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="robots" content="index, follow, noai, noimageai">
+<link rel="canonical" href="https://roadworld.blackroad.io/create/${guide.slug}">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"${guide.name}","description":"${guide.description}","url":"https://roadworld.blackroad.io/create/${guide.slug}","author":{"@type":"Organization","name":"BlackRoad OS, Inc.","url":"https://blackroad.io"},"publisher":{"@type":"Organization","name":"BlackRoad OS, Inc.","url":"https://blackroad.io"}}</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>*{margin:0;padding:0;box-sizing:border-box}:root{--bg:#000;--surface:#0a0a0a;--border:#1a1a1a;--text:#f5f5f5;--dim:#737373;--accent:#9C27B0}body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;padding:20px}.wrap{max-width:720px;margin:0 auto}h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(24px,5vw,40px);margin-bottom:8px}.cat{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px}.desc{font-size:15px;color:var(--dim);line-height:1.6;margin-bottom:24px}.diff-badge{display:inline-block;border-radius:20px;padding:6px 16px;font-family:'JetBrains Mono',monospace;font-size:12px;margin-bottom:32px;border:1px solid}h2{font-family:'Space Grotesk',sans-serif;font-size:20px;margin-bottom:16px;margin-top:32px}.concepts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}.concept-tag{background:var(--surface);border:1px solid var(--border);border-radius:4px;padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--dim)}.cta-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:24px;text-align:center;margin:32px 0}.cta-box h3{font-family:'Space Grotesk',sans-serif;margin-bottom:8px}.cta-box p{color:var(--dim);font-size:13px;margin-bottom:16px}.cta-btn{display:inline-block;padding:10px 24px;background:var(--text);color:var(--bg);border-radius:6px;font-weight:600;font-size:13px;font-family:'Space Grotesk',sans-serif}a{color:inherit;text-decoration:none}.related{margin-top:32px}.related h2{font-size:16px}.rel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-top:12px}.rel-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px}.rel-card:hover{border-color:#333}.rel-card h3{font-size:14px;margin-bottom:4px}.rel-card p{font-size:12px;color:var(--dim)}nav.top{margin-bottom:24px;font-size:13px;color:var(--dim)}nav.top a{color:var(--accent)}</style></head><body><div class="wrap">
+<nav class="top"><a href="/">RoadWorld</a> / <a href="/create">Create</a> / ${guide.name}</nav>
+<div class="cat">${guide.category}</div>
+<h1>${guide.name}</h1>
+<p class="desc">${guide.description}</p>
+<div class="diff-badge" style="color:${difficultyColors[guide.difficulty]};border-color:${difficultyColors[guide.difficulty]}">${guide.difficulty}</div>
+<h2>Key Concepts</h2>
+<div class="concepts">${guide.concepts.map(c => `<span class="concept-tag">${c}</span>`).join('')}</div>
+<div class="cta-box"><h3>Build in RoadWorld</h3><p>Open BlackRoad OS and start creating your game world with these concepts.</p><a href="https://app.blackroad.io" class="cta-btn">Open BlackRoad OS</a></div>
+${related.length ? `<div class="related"><h2>Related Guides</h2><div class="rel-grid">${related.map(r => `<a href="/create/${r.slug}"><div class="rel-card"><h3>${r.name}</h3><p>${r.description.slice(0, 80)}...</p></div></a>`).join('')}</div></div>` : ''}
+</body></html>`;
+        return new Response(guideHtml, { headers: { ...CORS, 'Content-Type': 'text/html;charset=UTF-8' } });
+      }
+    }
+
+    if (path === '/sitemap.xml') {
+      const guideUrls = CREATION_GUIDES.map(g => `  <url><loc>https://roadworld.blackroad.io/create/${g.slug}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>`).join('\n');
+      return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>https://roadworld.blackroad.io/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>\n  <url><loc>https://roadworld.blackroad.io/create</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>\n${guideUrls}\n</urlset>`, { headers: { 'Content-Type': 'application/xml', ...CORS } });
+    }
     if (!dbReady) { await ensureTables(env.DB); dbReady = true; }
+    // Analytics tracking
+    if (path === '/api/track' && method === 'POST') {
+      try { const body = await request.json(); const cf = request.cf || {};
+        await env.DB.prepare("CREATE TABLE IF NOT EXISTS analytics_events (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT DEFAULT 'pageview', path TEXT, referrer TEXT, country TEXT, city TEXT, device TEXT, screen TEXT, scroll_depth INTEGER DEFAULT 0, engagement_ms INTEGER DEFAULT 0, created_at TEXT DEFAULT (datetime('now')))").run();
+        await env.DB.prepare('INSERT INTO analytics_events (type, path, referrer, country, city, device, screen, scroll_depth, engagement_ms) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)').bind(body.type||'pageview', body.path||'/', body.referrer||'', cf.country||'', cf.city||'', body.device||'', body.screen||'', body.scroll||0, body.time||0).run();
+      } catch(e) {}
+      return json({ ok: true });
+    }
+
+    // ── Sovereign Analytics ──
+    if (path === '/api/analytics' && request.method === 'POST') {
+      try {
+        const body = await request.json();
+        const cf = request.cf || {};
+        const ip = request.headers.get('CF-Connecting-IP') || '';
+        const ipHash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(ip + '2026'));
+        const visitor = btoa(String.fromCharCode(...new Uint8Array(ipHash))).slice(0,12);
+        await env.DB.prepare(`CREATE TABLE IF NOT EXISTS br_analytics (id INTEGER PRIMARY KEY AUTOINCREMENT, path TEXT, referrer TEXT, visitor TEXT, country TEXT, city TEXT, screen TEXT, ts TEXT DEFAULT (datetime('now')))`).run();
+        await env.DB.prepare('INSERT INTO br_analytics (path, referrer, visitor, country, city, screen) VALUES (?,?,?,?,?,?)').bind(body.path||'/', body.ref||'', visitor, cf.country||'', cf.city||'', (body.w||0)+'x'+(body.h||0)).run();
+      } catch(e){}
+      return new Response('ok', {headers:{'Access-Control-Allow-Origin':'*'}});
+    }
+    if (path === '/api/analytics/stats') {
+      try {
+        await env.DB.prepare(`CREATE TABLE IF NOT EXISTS br_analytics (id INTEGER PRIMARY KEY AUTOINCREMENT, path TEXT, referrer TEXT, visitor TEXT, country TEXT, city TEXT, screen TEXT, ts TEXT DEFAULT (datetime('now')))`).run();
+        const total = await env.DB.prepare('SELECT COUNT(*) as c FROM br_analytics').first();
+        const unique = await env.DB.prepare('SELECT COUNT(DISTINCT visitor) as c FROM br_analytics').first();
+        const today = await env.DB.prepare("SELECT COUNT(*) as c FROM br_analytics WHERE ts > datetime('now','-1 day')").first();
+        const pages = await env.DB.prepare('SELECT path, COUNT(*) as views FROM br_analytics GROUP BY path ORDER BY views DESC LIMIT 10').all();
+        const countries = await env.DB.prepare('SELECT country, COUNT(*) as c FROM br_analytics WHERE country != "" GROUP BY country ORDER BY c DESC LIMIT 10').all();
+        return new Response(JSON.stringify({total_views:total?.c||0,unique_visitors:unique?.c||0,today:today?.c||0,top_pages:pages?.results||[],top_countries:countries?.results||[]}),{headers:{'Access-Control-Allow-Origin':'*','Content-Type':'application/json'}});
+      } catch(e) { return new Response(JSON.stringify({error:'analytics unavailable'}),{status:500,headers:{'Content-Type':'application/json'}}); }
+    }
+
+
 
     // Health
     if ((path === '/health' || path === '/api/health') && method === 'GET') {
@@ -3567,6 +3270,277 @@ export default {
       const result = await env.DB.prepare(query).bind(...params).all();
       const total = (result.results || []).reduce((s, w) => s + (w.roadcoin_earned || 0), 0);
       return json({ earnings: result.results || [], total_roadcoin: Math.round(total * 100) / 100 });
+    }
+
+    // ─── Achievements ───
+    const achieveMatch = path.match(/^\/api\/worlds\/([^/]+)\/achievements$/);
+    if (achieveMatch && method === 'POST') {
+      const body = await request.json();
+      if (!body.player_id || !body.name) return json({ error: 'player_id and name required' }, 400);
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_achievements (id TEXT PRIMARY KEY, world_id TEXT, player_id TEXT, name TEXT, description TEXT, icon TEXT DEFAULT '🏆', points INTEGER DEFAULT 10, created_at TEXT DEFAULT (datetime('now')))").run();
+      const id = crypto.randomUUID();
+      await env.DB.prepare('INSERT INTO rw_achievements (id, world_id, player_id, name, description, icon, points) VALUES (?, ?, ?, ?, ?, ?, ?)').bind(id, achieveMatch[1], body.player_id, body.name, body.description || '', body.icon || '🏆', body.points || 10).run();
+      return json({ id, name: body.name, points: body.points || 10 }, 201);
+    }
+
+    const playerAchMatch = path.match(/^\/api\/achievements\/([^/]+)$/);
+    if (playerAchMatch && method === 'GET') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_achievements (id TEXT PRIMARY KEY, world_id TEXT, player_id TEXT, name TEXT, description TEXT, icon TEXT DEFAULT '🏆', points INTEGER DEFAULT 10, created_at TEXT DEFAULT (datetime('now')))").run();
+      const result = await env.DB.prepare('SELECT * FROM rw_achievements WHERE player_id = ? ORDER BY created_at DESC').bind(playerAchMatch[1]).all();
+      const total = (result.results || []).reduce((s, a) => s + (a.points || 0), 0);
+      return json({ player: playerAchMatch[1], achievements: result.results || [], total_points: total });
+    }
+
+    // ─── Leaderboard ───
+    const lbMatch = path.match(/^\/api\/worlds\/([^/]+)\/leaderboard$/);
+    if (lbMatch && method === 'POST') {
+      const body = await request.json();
+      if (!body.player_id || body.score == null) return json({ error: 'player_id and score required' }, 400);
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_scores (id TEXT PRIMARY KEY, world_id TEXT, player_id TEXT, score INTEGER, created_at TEXT DEFAULT (datetime('now')))").run();
+      const id = crypto.randomUUID();
+      await env.DB.prepare('INSERT INTO rw_scores (id, world_id, player_id, score) VALUES (?, ?, ?, ?)').bind(id, lbMatch[1], body.player_id, body.score).run();
+      return json({ ok: true, id }, 201);
+    }
+    if (lbMatch && method === 'GET') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_scores (id TEXT PRIMARY KEY, world_id TEXT, player_id TEXT, score INTEGER, created_at TEXT DEFAULT (datetime('now')))").run();
+      const result = await env.DB.prepare('SELECT player_id, MAX(score) as best_score, COUNT(*) as plays FROM rw_scores WHERE world_id = ? GROUP BY player_id ORDER BY best_score DESC LIMIT 25').bind(lbMatch[1]).all();
+      return json({ world_id: lbMatch[1], leaderboard: (result.results || []).map((r, i) => ({ rank: i + 1, ...r })) });
+    }
+
+    // --- Enhanced: Object library ---
+    if (path === '/api/objects' && method === 'GET') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_objects (id TEXT PRIMARY KEY, name TEXT, category TEXT, sprite TEXT, properties TEXT DEFAULT '{}', created_at TEXT DEFAULT (datetime('now')))").run();
+      const cat = url.searchParams.get('category');
+      const cnt = await env.DB.prepare('SELECT COUNT(*) as c FROM rw_objects').first();
+      if ((cnt?.c||0) === 0) {
+        const seeds = [{cat:'buildings',items:['House','Office','Store','Factory','Hospital']},{cat:'roads',items:['Straight Road','Curved Road','Intersection','Highway','Bridge']},{cat:'nature',items:['Tree','Bush','Lake','Mountain','Flower']},{cat:'vehicles',items:['Car','Truck','Bicycle','Bus','Motorcycle']},{cat:'characters',items:['Citizen','Worker','Guard','Teacher','Artist']},{cat:'decorations',items:['Bench','Lamp Post','Fountain','Statue','Sign']}];
+        for (const s of seeds) for (const item of s.items) await env.DB.prepare("INSERT INTO rw_objects (id,name,category,sprite) VALUES (?,?,?,?)").bind(crypto.randomUUID().slice(0,8),item,s.cat,`${s.cat}/${item.toLowerCase().replace(/ /g,'-')}.png`).run();
+      }
+      let q = 'SELECT * FROM rw_objects'; const b = [];
+      if (cat) { q += ' WHERE category = ?'; b.push(cat); }
+      const rows = await env.DB.prepare(q + ' ORDER BY category,name').bind(...b).all();
+      return json({objects:rows.results,count:rows.results.length});
+    }
+    const placeMatch = path.match(/^\/api\/worlds\/([^/]+)\/place$/);
+    if (placeMatch && method === 'POST') {
+      const body = await request.json(); const world = await env.DB.prepare('SELECT * FROM rw_worlds WHERE id = ?').bind(placeMatch[1]).first();
+      if (!world) return json({error:'World not found'},404);
+      const objects = JSON.parse(world.objects||'[]');
+      objects.push({object_id:body.object_id,x:body.x||0,y:body.y||0,rotation:body.rotation||0,scale:body.scale||1});
+      await env.DB.prepare("UPDATE rw_worlds SET objects = ?, updated_at = datetime('now') WHERE id = ?").bind(JSON.stringify(objects),placeMatch[1]).run();
+      return json({ok:true,total_objects:objects.length});
+    }
+    const removeMatch = path.match(/^\/api\/worlds\/([^/]+)\/remove$/);
+    if (removeMatch && method === 'POST') {
+      const body = await request.json(); const world = await env.DB.prepare('SELECT * FROM rw_worlds WHERE id = ?').bind(removeMatch[1]).first();
+      if (!world) return json({error:'World not found'},404);
+      let objects = JSON.parse(world.objects||'[]');
+      objects = objects.filter(o => !(Math.abs(o.x-body.x)<0.1 && Math.abs(o.y-body.y)<0.1));
+      await env.DB.prepare("UPDATE rw_worlds SET objects = ?, updated_at = datetime('now') WHERE id = ?").bind(JSON.stringify(objects),removeMatch[1]).run();
+      return json({ok:true,total_objects:objects.length});
+    }
+    const likeWMatch = path.match(/^\/api\/worlds\/([^/]+)\/like$/);
+    if (likeWMatch && method === 'POST') { await env.DB.prepare('UPDATE rw_worlds SET likes = COALESCE(likes,0)+1 WHERE id = ?').bind(likeWMatch[1]).run(); return json({ok:true}); }
+    if (path === '/api/world-templates') {
+      return json({templates:[{id:'empty-city',name:'Empty City',grid:'64x64',preset_objects:0},{id:'island',name:'Island',grid:'48x48',preset_objects:12},{id:'dungeon',name:'Dungeon',grid:'32x32',preset_objects:20},{id:'highway',name:'Highway',grid:'128x32',preset_objects:15},{id:'office',name:'Office Building',grid:'32x32',preset_objects:30}]});
+    }
+    const exportWMatch = path.match(/^\/api\/worlds\/([^/]+)\/export$/);
+    if (exportWMatch && method === 'POST') {
+      const world = await env.DB.prepare('SELECT * FROM rw_worlds WHERE id = ?').bind(exportWMatch[1]).first();
+      if (!world) return json({error:'not found'},404);
+      try { await fetch('https://roadchain.blackroad.io/api/event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'roadworld',type:'export',data:{id:world.id}})}); } catch{}
+      return json({world:{id:world.id,name:world.name,objects:JSON.parse(world.objects||'[]'),settings:JSON.parse(world.settings||'{}')},exported_at:new Date().toISOString()});
+    }
+    if (path === '/api/discover/featured') { const rows = await env.DB.prepare("SELECT id,name,description,plays,likes FROM rw_worlds WHERE published=1 ORDER BY likes DESC LIMIT 10").all(); return json({featured:rows.results}); }
+
+    // ═══════════════════════════════════════════════════════════════
+    // NPC SYSTEM
+    // ═══════════════════════════════════════════════════════════════
+    const npcWorldMatch = path.match(/^\/api\/worlds\/([^/]+)\/npcs$/);
+    if (npcWorldMatch && method === 'POST') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_npcs (id TEXT PRIMARY KEY, world_id TEXT, name TEXT, personality TEXT, dialog TEXT DEFAULT '[]', behavior TEXT DEFAULT 'wander', position_x REAL DEFAULT 0, position_y REAL DEFAULT 0, sprite TEXT, ai_prompt TEXT, created_at TEXT DEFAULT (datetime('now')))").run();
+      const body = await request.json();
+      const id = crypto.randomUUID().slice(0,12);
+      await env.DB.prepare("INSERT INTO rw_npcs (id,world_id,name,personality,dialog,behavior,position_x,position_y,sprite,ai_prompt) VALUES (?,?,?,?,?,?,?,?,?,?)").bind(id,npcWorldMatch[1],body.name||'Villager',body.personality||'friendly',JSON.stringify(body.dialog||[]),body.behavior||'wander',body.x||0,body.y||0,body.sprite||'npc-default',body.ai_prompt||'').run();
+      return json({ok:true,id,name:body.name});
+    }
+    if (npcWorldMatch && method === 'GET') {
+      try { await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_npcs (id TEXT PRIMARY KEY, world_id TEXT, name TEXT, personality TEXT, dialog TEXT DEFAULT '[]', behavior TEXT DEFAULT 'wander', position_x REAL DEFAULT 0, position_y REAL DEFAULT 0, sprite TEXT, ai_prompt TEXT, created_at TEXT DEFAULT (datetime('now')))").run(); } catch{}
+      const rows = await env.DB.prepare('SELECT * FROM rw_npcs WHERE world_id = ?').bind(npcWorldMatch[1]).all();
+      return json({npcs:rows.results});
+    }
+    const npcTalkMatch = path.match(/^\/api\/npcs\/([^/]+)\/talk$/);
+    if (npcTalkMatch && method === 'POST') {
+      try { await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_npcs (id TEXT PRIMARY KEY, world_id TEXT, name TEXT, personality TEXT, dialog TEXT DEFAULT '[]', behavior TEXT DEFAULT 'wander', position_x REAL DEFAULT 0, position_y REAL DEFAULT 0, sprite TEXT, ai_prompt TEXT, created_at TEXT DEFAULT (datetime('now')))").run(); } catch{}
+      const npc = await env.DB.prepare('SELECT * FROM rw_npcs WHERE id = ?').bind(npcTalkMatch[1]).first();
+      if (!npc) return json({error:'NPC not found'},404);
+      const body = await request.json();
+      let response;
+      if (env.AI && npc.ai_prompt) {
+        try { const r = await env.AI.run('@cf/meta/llama-3.1-8b-instruct',{messages:[{role:'system',content:`You are ${npc.name}, a ${npc.personality} NPC in a game world. ${npc.ai_prompt}. Stay in character. Be brief (2-3 sentences).`},{role:'user',content:body.message||'Hello'}],max_tokens:150}); response = r.response; } catch{ response = null; }
+      }
+      if (!response) {
+        const dialogs = JSON.parse(npc.dialog||'[]');
+        response = dialogs.length > 0 ? dialogs[Math.floor(Math.random()*dialogs.length)] : `${npc.name} nods ${npc.personality === 'friendly' ? 'warmly' : 'cautiously'}. "Greetings, traveler."`;
+      }
+      try { await fetch('https://roadcoin.blackroad.io/api/earn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({road_id:body.player_id||'player',action:'npc_talk',amount:0.1,source_product:'roadworld'})}); } catch{}
+      return json({npc:npc.name,personality:npc.personality,response});
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // QUEST SYSTEM
+    // ═══════════════════════════════════════════════════════════════
+    const questWorldMatch = path.match(/^\/api\/worlds\/([^/]+)\/quests$/);
+    if (questWorldMatch && method === 'POST') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_quests (id TEXT PRIMARY KEY, world_id TEXT, title TEXT, description TEXT, objectives TEXT DEFAULT '[]', rewards TEXT DEFAULT '{}', difficulty TEXT DEFAULT 'easy', npc_giver TEXT, status TEXT DEFAULT 'active', completions INTEGER DEFAULT 0, created_at TEXT DEFAULT (datetime('now')))").run();
+      const body = await request.json();
+      const id = crypto.randomUUID().slice(0,12);
+      await env.DB.prepare("INSERT INTO rw_quests (id,world_id,title,description,objectives,rewards,difficulty,npc_giver) VALUES (?,?,?,?,?,?,?,?)").bind(id,questWorldMatch[1],body.title||'New Quest',body.description||'',JSON.stringify(body.objectives||[]),JSON.stringify(body.rewards||{roadcoin:5}),body.difficulty||'easy',body.npc_giver||'').run();
+      return json({ok:true,id,title:body.title});
+    }
+    if (questWorldMatch && method === 'GET') {
+      try { await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_quests (id TEXT PRIMARY KEY, world_id TEXT, title TEXT, description TEXT, objectives TEXT DEFAULT '[]', rewards TEXT DEFAULT '{}', difficulty TEXT DEFAULT 'easy', npc_giver TEXT, status TEXT DEFAULT 'active', completions INTEGER DEFAULT 0, created_at TEXT DEFAULT (datetime('now')))").run(); } catch{}
+      const rows = await env.DB.prepare('SELECT * FROM rw_quests WHERE world_id = ?').bind(questWorldMatch[1]).all();
+      return json({quests:rows.results});
+    }
+    const questCompleteMatch = path.match(/^\/api\/quests\/([^/]+)\/complete$/);
+    if (questCompleteMatch && method === 'POST') {
+      const quest = await env.DB.prepare('SELECT * FROM rw_quests WHERE id = ?').bind(questCompleteMatch[1]).first();
+      if (!quest) return json({error:'Quest not found'},404);
+      await env.DB.prepare('UPDATE rw_quests SET completions = completions + 1 WHERE id = ?').bind(questCompleteMatch[1]).run();
+      const rewards = JSON.parse(quest.rewards||'{}');
+      const body = await request.json();
+      if (rewards.roadcoin && body.player_id) {
+        try { await fetch('https://roadcoin.blackroad.io/api/earn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({road_id:body.player_id,action:'quest_complete',amount:rewards.roadcoin,source_product:'roadworld'})}); } catch{}
+      }
+      try { await fetch('https://roadchain.blackroad.io/api/event',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'roadworld',type:'quest_complete',data:{quest:quest.title,player:body.player_id}})}); } catch{}
+      return json({ok:true,quest:quest.title,rewards,completions:quest.completions+1});
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // INVENTORY SYSTEM
+    // ═══════════════════════════════════════════════════════════════
+    const invMatch = path.match(/^\/api\/inventory\/([^/]+)$/);
+    if (invMatch && method === 'GET') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_inventory (id TEXT PRIMARY KEY, player_id TEXT, item_name TEXT, item_type TEXT, quantity INTEGER DEFAULT 1, properties TEXT DEFAULT '{}', world_id TEXT, acquired_at TEXT DEFAULT (datetime('now')))").run();
+      const rows = await env.DB.prepare('SELECT * FROM rw_inventory WHERE player_id = ?').bind(invMatch[1]).all();
+      return json({player:invMatch[1],items:rows.results,total:rows.results.length});
+    }
+    const invAddMatch = path.match(/^\/api\/inventory\/([^/]+)\/add$/);
+    if (invAddMatch && method === 'POST') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_inventory (id TEXT PRIMARY KEY, player_id TEXT, item_name TEXT, item_type TEXT, quantity INTEGER DEFAULT 1, properties TEXT DEFAULT '{}', world_id TEXT, acquired_at TEXT DEFAULT (datetime('now')))").run();
+      const body = await request.json();
+      const existing = await env.DB.prepare('SELECT * FROM rw_inventory WHERE player_id = ? AND item_name = ? AND world_id = ?').bind(invAddMatch[1],body.item_name||'',body.world_id||'').first();
+      if (existing) {
+        await env.DB.prepare('UPDATE rw_inventory SET quantity = quantity + ? WHERE id = ?').bind(body.quantity||1,existing.id).run();
+      } else {
+        await env.DB.prepare("INSERT INTO rw_inventory (id,player_id,item_name,item_type,quantity,properties,world_id) VALUES (?,?,?,?,?,?,?)").bind(crypto.randomUUID().slice(0,12),invAddMatch[1],body.item_name||'item',body.item_type||'misc',body.quantity||1,JSON.stringify(body.properties||{}),body.world_id||'').run();
+      }
+      return json({ok:true,player:invAddMatch[1],item:body.item_name});
+    }
+    const invUseMatch = path.match(/^\/api\/inventory\/([^/]+)\/use$/);
+    if (invUseMatch && method === 'POST') {
+      const body = await request.json();
+      const item = await env.DB.prepare('SELECT * FROM rw_inventory WHERE player_id = ? AND item_name = ?').bind(invUseMatch[1],body.item_name||'').first();
+      if (!item || item.quantity < 1) return json({error:'Item not found or empty'},404);
+      if (item.quantity <= 1) { await env.DB.prepare('DELETE FROM rw_inventory WHERE id = ?').bind(item.id).run(); }
+      else { await env.DB.prepare('UPDATE rw_inventory SET quantity = quantity - 1 WHERE id = ?').bind(item.id).run(); }
+      return json({ok:true,used:body.item_name,remaining:Math.max(0,item.quantity-1)});
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // RULES ENGINE
+    // ═══════════════════════════════════════════════════════════════
+    const rulesMatch = path.match(/^\/api\/worlds\/([^/]+)\/rules$/);
+    if (rulesMatch && method === 'POST') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_rules (id TEXT PRIMARY KEY, world_id TEXT, trigger_event TEXT, condition_expr TEXT, action_expr TEXT, enabled INTEGER DEFAULT 1, created_at TEXT DEFAULT (datetime('now')))").run();
+      const body = await request.json();
+      const rules = body.rules || [body];
+      const ids = [];
+      for (const r of rules) {
+        const id = crypto.randomUUID().slice(0,12);
+        await env.DB.prepare("INSERT INTO rw_rules (id,world_id,trigger_event,condition_expr,action_expr) VALUES (?,?,?,?,?)").bind(id,rulesMatch[1],r.trigger||'',r.condition||'true',r.action||'').run();
+        ids.push(id);
+      }
+      return json({ok:true,rules_created:ids.length,ids});
+    }
+    if (rulesMatch && method === 'GET') {
+      try { await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_rules (id TEXT PRIMARY KEY, world_id TEXT, trigger_event TEXT, condition_expr TEXT, action_expr TEXT, enabled INTEGER DEFAULT 1, created_at TEXT DEFAULT (datetime('now')))").run(); } catch{}
+      const rows = await env.DB.prepare('SELECT * FROM rw_rules WHERE world_id = ? AND enabled = 1').bind(rulesMatch[1]).all();
+      return json({rules:rows.results});
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // MULTIPLAYER
+    // ═══════════════════════════════════════════════════════════════
+    const joinMatch = path.match(/^\/api\/worlds\/([^/]+)\/join$/);
+    if (joinMatch && method === 'POST') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_sessions (id TEXT PRIMARY KEY, world_id TEXT, players TEXT DEFAULT '[]', started_at TEXT DEFAULT (datetime('now')), max_players INTEGER DEFAULT 10, status TEXT DEFAULT 'active')").run();
+      const body = await request.json();
+      let session = await env.DB.prepare("SELECT * FROM rw_sessions WHERE world_id = ? AND status = 'active'").bind(joinMatch[1]).first();
+      if (!session) {
+        const sid = crypto.randomUUID().slice(0,12);
+        await env.DB.prepare("INSERT INTO rw_sessions (id,world_id,players) VALUES (?,?,?)").bind(sid,joinMatch[1],JSON.stringify([body.player_id||'player1'])).run();
+        session = {id:sid,players:[body.player_id||'player1']};
+      } else {
+        const players = JSON.parse(session.players||'[]');
+        if (players.length >= (session.max_players||10)) return json({error:'Session full'},400);
+        if (!players.includes(body.player_id)) players.push(body.player_id);
+        await env.DB.prepare('UPDATE rw_sessions SET players = ? WHERE id = ?').bind(JSON.stringify(players),session.id).run();
+        session.players = players;
+      }
+      // Increment plays
+      await env.DB.prepare('UPDATE rw_worlds SET plays = COALESCE(plays,0)+1 WHERE id = ?').bind(joinMatch[1]).run();
+      return json({ok:true,session_id:session.id,players:typeof session.players === 'string' ? JSON.parse(session.players) : session.players});
+    }
+    const sessionMatch = path.match(/^\/api\/worlds\/([^/]+)\/session$/);
+    if (sessionMatch && method === 'GET') {
+      try { await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_sessions (id TEXT PRIMARY KEY, world_id TEXT, players TEXT DEFAULT '[]', started_at TEXT DEFAULT (datetime('now')), max_players INTEGER DEFAULT 10, status TEXT DEFAULT 'active')").run(); } catch{}
+      const session = await env.DB.prepare("SELECT * FROM rw_sessions WHERE world_id = ? AND status = 'active'").bind(sessionMatch[1]).first();
+      if (!session) return json({session:null,active:false});
+      return json({session:{id:session.id,players:JSON.parse(session.players||'[]'),started_at:session.started_at,max_players:session.max_players},active:true});
+    }
+    const actionMatch = path.match(/^\/api\/worlds\/([^/]+)\/action$/);
+    if (actionMatch && method === 'POST') {
+      const body = await request.json();
+      // Log action to activity
+      try { await fetch('https://highway.blackroad.io/api/feed',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({app:'roadworld',action:body.action||'interact',entity:actionMatch[1],details:body.details||'',agent:body.player_id||'player'})}); } catch{}
+      return json({ok:true,world:actionMatch[1],action:body.action,player:body.player_id});
+    }
+
+    // ═══════════════════════════════════════════════════════════════
+    // RATINGS & ACHIEVEMENTS
+    // ═══════════════════════════════════════════════════════════════
+    const rateV2Match = path.match(/^\/api\/worlds\/([^/]+)\/rate$/);
+    if (rateV2Match && method === 'POST' && !path.includes('/ratings')) {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_ratings (id TEXT PRIMARY KEY, world_id TEXT, player_id TEXT, score INTEGER, review TEXT, created_at TEXT DEFAULT (datetime('now')))").run();
+      const body = await request.json();
+      const score = Math.max(1,Math.min(5,parseInt(body.score)||3));
+      await env.DB.prepare("INSERT INTO rw_ratings (id,world_id,player_id,score,review) VALUES (?,?,?,?,?)").bind(crypto.randomUUID().slice(0,12),rateV2Match[1],body.player_id||'anon',score,body.review||'').run();
+      return json({ok:true,score});
+    }
+    const ratingsV2Match = path.match(/^\/api\/worlds\/([^/]+)\/ratings$/);
+    if (ratingsV2Match && method === 'GET') {
+      try { await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_ratings (id TEXT PRIMARY KEY, world_id TEXT, player_id TEXT, score INTEGER, review TEXT, created_at TEXT DEFAULT (datetime('now')))").run(); } catch{}
+      const rows = await env.DB.prepare('SELECT * FROM rw_ratings WHERE world_id = ? ORDER BY created_at DESC LIMIT 50').bind(ratingsV2Match[1]).all();
+      const avg = await env.DB.prepare('SELECT AVG(score) as avg_score, COUNT(*) as total FROM rw_ratings WHERE world_id = ?').bind(ratingsV2Match[1]).first();
+      return json({ratings:rows.results,average:Math.round((avg?.avg_score||0)*10)/10,total_ratings:avg?.total||0});
+    }
+
+    // Achievements v2
+    const achieveV2Match = path.match(/^\/api\/achievements\/([^/]+)$/);
+    if (achieveV2Match && method === 'GET') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_achievements (id TEXT PRIMARY KEY, player_id TEXT, achievement TEXT, world_id TEXT, earned_at TEXT DEFAULT (datetime('now')))").run();
+      const rows = await env.DB.prepare('SELECT * FROM rw_achievements WHERE player_id = ? ORDER BY earned_at DESC').bind(achieveV2Match[1]).all();
+      return json({player:achieveV2Match[1],achievements:rows.results,total:rows.results.length});
+    }
+    if (path === '/api/achievements/award' && method === 'POST') {
+      await env.DB.prepare("CREATE TABLE IF NOT EXISTS rw_achievements (id TEXT PRIMARY KEY, player_id TEXT, achievement TEXT, world_id TEXT, earned_at TEXT DEFAULT (datetime('now')))").run();
+      const body = await request.json();
+      const id = crypto.randomUUID().slice(0,12);
+      await env.DB.prepare("INSERT INTO rw_achievements (id,player_id,achievement,world_id) VALUES (?,?,?,?)").bind(id,body.player_id||'anon',body.achievement||'Explorer',body.world_id||'').run();
+      try { await fetch('https://roadcoin.blackroad.io/api/earn',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({road_id:body.player_id||'anon',action:'achievement',amount:2,source_product:'roadworld'})}); } catch{}
+      return json({ok:true,id,achievement:body.achievement});
     }
 
     return json({ error: 'Not found', service: 'roadworld' }, 404);
