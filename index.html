@@ -1,399 +1,842 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head><style id="br-grayscale">:root{--bg:#000!important;--card:#080808!important;--border:#191919!important;--text:#d4d4d4!important;--muted:#777!important;--dim:#3a3a3a!important;--pink:#888!important;--amber:#999!important;--blue:#777!important;--violet:#666!important;--green:#999!important;--primary:#999!important;--secondary:#777!important;--accent:#aaa!important}html,body{background:#000!important;color:#d4d4d4!important}*{border-color:#191919!important}a{color:#bbb!important}a:hover{color:#fff!important}button,input,select,textarea{background:#0a0a0a!important;color:#d4d4d4!important;border-color:#333!important}h1,h2,h3,h4,h5,h6{color:#e0e0e0!important}iframe,img,video,canvas{filter:none!important}svg:not(iframe svg){filter:grayscale(1)!important}[class*="dot"],[class*="badge"]{filter:grayscale(1)!important}</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RoadWorld — The Game Engine — BlackRoad OS</title>
-<meta name="description" content="Gaia monitors every pixel. RoadWorld is the game engine where BlackRoad agents live in worlds you build.">
-<meta property="og:title" content="RoadWorld — BlackRoad OS">
-<meta property="og:description" content="Gaia monitors every pixel. RoadWorld is the game engine where BlackRoad agents live in worlds you build.">
-<meta property="og:url" content="https://roadworld.blackroad.io">
-<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="mockup-base.css">
+<title>BlackRoad OS HQ — 1 Road Blvd</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{--g:linear-gradient(90deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--g135:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF,#4488FF,#00D4FF);--bg:#000;--card:#0a0a0a;--elevated:#111;--hover:#181818;--border:#1a1a1a;--muted:#444;--sub:#737373;--text:#f5f5f5;--white:#fff;--sg:'Space Grotesk',sans-serif;--jb:'JetBrains Mono',monospace}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sg);line-height:1.6;overflow-x:hidden}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:#000}::-webkit-scrollbar-thumb{background:#1a1a1a;border-radius:2px}
-a{color:var(--text);text-decoration:none}
-button{font-family:var(--sg);cursor:pointer}
-img{max-width:100%}
-.grad-bar{height:3px;background:var(--g)}
-.container{max-width:1000px;width:100%;margin:0 auto;padding:0 24px}
-.section{padding:72px 0}
-.section-num{font-family:var(--jb);font-size:10px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
-.section-title{font-weight:700;font-size:28px;color:var(--white);margin-bottom:8px}
-.section-desc{font-size:14px;color:var(--sub);max-width:460px;line-height:1.7}
-.divider{height:1px;background:var(--border)}
-nav{position:fixed;top:3px;left:0;right:0;z-index:100;padding:0 24px}
-.nav-inner{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px 20px;background:rgba(0,0,0,.9);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:10px}
-.nav-logo{font-weight:700;font-size:16px;color:var(--white);display:flex;align-items:center;gap:10px}
-.nav-logo-bar{width:20px;height:3px;border-radius:2px;background:var(--g)}
-.nav-links{display:flex;gap:24px}
-.nav-links a{font-size:12px;font-weight:500;color:var(--sub);transition:color .15s}
-.nav-links a:hover{color:var(--white)}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:6px;font-weight:600;font-size:12px;border:none;transition:all .15s}
-.btn-white{background:var(--white);color:#000}
-.btn-white:hover{background:#e0e0e0}
-.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
-.btn-outline:hover{border-color:#444}
-.btn-lg{padding:13px 32px;font-size:14px;border-radius:8px}
-.hero{min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative}
-.hero-tag{font-family:var(--jb);font-size:10px;color:var(--sub);letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:8px}
-.hero-dot{width:5px;height:5px;border-radius:50%;background:var(--white);animation:pulse 2.5s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.hero-title{font-size:clamp(44px,8vw,84px);font-weight:700;line-height:.92;color:var(--white);letter-spacing:-.04em;margin-bottom:20px}
-.hero-sub{font-size:clamp(14px,1.8vw,17px);color:var(--sub);max-width:500px;margin:0 auto 40px;line-height:1.7}
-.hero-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
-.hero-stats{display:flex;gap:48px;margin-top:72px;flex-wrap:wrap;justify-content:center}
-.hero-stat{text-align:center}
-.hero-stat-n{font-size:26px;font-weight:700;color:var(--white);font-family:var(--jb)}
-.hero-stat-l{font-size:9px;color:var(--muted);font-family:var(--jb);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:36px}
-.feat{background:var(--card);padding:24px;transition:background .15s}
-.feat:hover{background:var(--elevated)}
-.feat-icon{font-size:20px;margin-bottom:12px}
-.feat-title{font-weight:600;font-size:14px;color:var(--white);margin-bottom:6px}
-.feat-text{font-size:12px;color:var(--sub);line-height:1.7}
-.agent-section{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px;margin-top:36px;display:flex;gap:24px;align-items:flex-start}
-.agent-avatar{width:56px;height:56px;border-radius:50%;background:var(--g135);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;color:#000;flex-shrink:0;font-family:var(--sg)}
-.agent-info{flex:1}
-.agent-name-lg{font-size:18px;font-weight:700;color:var(--white);margin-bottom:3px}
-.agent-role-lg{font-family:var(--jb);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
-.agent-bio{font-size:13px;color:var(--sub);line-height:1.7;margin-bottom:14px}
-.agent-status{display:flex;align-items:center;gap:7px;font-family:var(--jb);font-size:10px;color:var(--muted)}
-.status-dot{width:6px;height:6px;border-radius:50%;background:var(--muted)}
-.status-dot.on{background:#22d3ee}
-.steps-row{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;margin-top:36px}
-.step{background:var(--card);padding:28px 24px}
-.step-n{font-family:var(--jb);font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-bottom:10px}
-.step-title{font-weight:600;font-size:15px;color:var(--white);margin-bottom:8px}
-.step-text{font-size:12px;color:var(--sub);line-height:1.7}
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px}
-.price-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:28px 22px;text-align:center}
-.price-card.featured{border-color:#222}
-.price-grad{height:3px;background:var(--g);margin:-28px -22px 24px;border-radius:10px 10px 0 0}
-.price-name{font-family:var(--jb);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
-.price-val{font-size:36px;font-weight:700;color:var(--white);line-height:1}
-.price-period{font-size:11px;color:var(--muted);margin-bottom:20px;margin-top:3px}
-.price-list{list-style:none;text-align:left;margin-bottom:24px}
-.price-list li{font-size:12px;color:var(--sub);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px}
-.price-list li:last-child{border-bottom:none}
-.price-check{width:12px;height:2px;border-radius:1px;background:var(--g);flex-shrink:0}
-.connected-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px;margin-top:28px}
-.connected{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;transition:border-color .15s;display:block}
-.connected:hover{border-color:#333}
-.connected-name{font-weight:600;font-size:13px;color:var(--white);margin-bottom:3px}
-.connected-line{font-size:11px;color:var(--sub)}
-.connected-url{font-family:var(--jb);font-size:9px;color:var(--muted);margin-top:8px}
-footer{border-top:1px solid var(--border);padding:40px 0}
-.footer-inner{max-width:1000px;margin:0 auto;padding:0 24px}
-.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:32px;margin-bottom:32px}
-.footer-brand{font-weight:700;font-size:15px;color:var(--white);margin-bottom:6px;display:flex;align-items:center;gap:8px}
-.footer-brand-bar{width:16px;height:3px;border-radius:2px;background:var(--g)}
-.footer-tagline{font-family:var(--jb);font-size:9px;color:var(--muted);letter-spacing:.1em}
-.footer-col h4{font-family:var(--jb);font-size:9px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px}
-.footer-col a{display:block;font-size:12px;color:var(--sub);padding:3px 0;transition:color .15s}
-.footer-col a:hover{color:var(--white)}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--border);flex-wrap:wrap;gap:12px}
-.footer-copy{font-family:var(--jb);font-size:9px;color:var(--muted)}
-#br-chat-fab{position:fixed;bottom:24px;right:24px;z-index:9999;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#FF6B2B,#FF2255,#CC00AA,#8844FF);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,107,43,.4);transition:transform .2s}
-#br-chat-fab:hover{transform:scale(1.1)}
-#br-chat-fab svg{width:22px;height:22px;fill:#fff}
-#br-chat-panel{position:fixed;bottom:88px;right:24px;z-index:9998;width:330px;max-height:500px;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:14px;display:none;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.8);overflow:hidden}
-#br-chat-panel.open{display:flex}
-#br-chat-head{padding:12px 14px;background:#111;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:10px}
-#br-chat-av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#FF6B2B,#8844FF);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;font-family:'Space Grotesk',sans-serif;flex-shrink:0}
-#br-chat-info{flex:1;min-width:0}
-#br-chat-nm{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:#f5f5f5}
-#br-chat-rl{font-family:'JetBrains Mono',monospace;font-size:9px;color:#737373;margin-top:1px}
-#br-chat-st{display:flex;align-items:center;gap:5px;margin-top:2px}
-.br-sdot{width:6px;height:6px;border-radius:50%;background:#444}
-.br-sdot.on{background:#22d3ee}
-#br-chat-sl{font-size:9px;color:#737373;font-family:'JetBrains Mono',monospace}
-#br-chat-x{background:none;border:none;color:#737373;font-size:16px;cursor:pointer;padding:0}
-#br-chat-msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:8px;min-height:180px}
-#br-chat-msgs::-webkit-scrollbar{width:3px}
-#br-chat-msgs::-webkit-scrollbar-thumb{background:#1a1a1a;border-radius:2px}
-.br-msg{max-width:85%;padding:7px 11px;border-radius:10px;font-size:12px;line-height:1.5;font-family:'Space Grotesk',sans-serif}
-.br-msg.user{align-self:flex-end;background:linear-gradient(135deg,rgba(255,107,43,.15),rgba(136,68,255,.15));border:1px solid rgba(136,68,255,.3);color:#f5f5f5}
-.br-msg.agent{align-self:flex-start;background:#111;border:1px solid #1a1a1a;color:#d4d4d4}
-.br-msg.think{align-self:flex-start;background:#0a0a0a;border:1px solid #1a1a1a;color:#444;font-style:italic;font-family:'JetBrains Mono',monospace;font-size:10px}
-#br-chat-intro{padding:8px 10px;font-size:11px;color:#737373;font-family:'JetBrains Mono',monospace;text-align:center;line-height:1.5}
-#br-chat-row{padding:8px 10px;background:#111;border-top:1px solid #1a1a1a;display:flex;gap:7px}
-#br-chat-in{flex:1;background:#0a0a0a;border:1px solid #1a1a1a;border-radius:7px;padding:7px 10px;font-size:12px;color:#f5f5f5;font-family:'Space Grotesk',sans-serif;outline:none;resize:none;height:36px;line-height:1.4}
-#br-chat-in:focus{border-color:rgba(136,68,255,.4)}
-#br-chat-go{background:linear-gradient(135deg,#FF2255,#8844FF);border:none;border-radius:7px;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-#br-chat-go svg{width:14px;height:14px;fill:#fff}
-@media(max-width:768px){.nav-links{display:none}.hero{padding:100px 16px 60px}.hero-stats{gap:24px}.pricing-grid{grid-template-columns:1fr}.steps-row{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr;gap:24px}.feat-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:480px){.feat-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}}
+  :root {
+    --s1: #080808;
+    --s2: #0a0a0a;
+    --s3: #111111;
+    --s4: #1a1a1a;
+    --s5: #222222;
+    --s6: #2a2a2a;
+    --w80: rgba(255,255,255,0.8);
+    --w60: rgba(255,255,255,0.6);
+    --w40: rgba(255,255,255,0.4);
+    --w20: rgba(255,255,255,0.2);
+    --w10: rgba(255,255,255,0.1);
+    --w05: rgba(255,255,255,0.05);
+    --wall: 2px solid rgba(255,255,255,0.85);
+    --div:  1px solid rgba(255,255,255,0.22);
+    --font: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
+    --shaft: 44px;
+  }
+  
+
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font);
+  }
+
+  /* stars */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at  4%  3%, rgba(255,255,255,.65) 0%,transparent 100%),
+      radial-gradient(1px 1px at 14% 11%, rgba(255,255,255,.45) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 22% 6%, rgba(255,255,255,.7) 0%,transparent 100%),
+      radial-gradient(1px 1px at 32%  2%, rgba(255,255,255,.4) 0%,transparent 100%),
+      radial-gradient(1px 1px at 42% 13%, rgba(255,255,255,.55) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 51% 5%, rgba(255,255,255,.7) 0%,transparent 100%),
+      radial-gradient(1px 1px at 60% 9%, rgba(255,255,255,.45) 0%,transparent 100%),
+      radial-gradient(1px 1px at 68% 2%, rgba(255,255,255,.6) 0%,transparent 100%),
+      radial-gradient(1.5px 1.5px at 76% 7%, rgba(255,255,255,.75) 0%,transparent 100%),
+      radial-gradient(1px 1px at 84% 14%, rgba(255,255,255,.4) 0%,transparent 100%),
+      radial-gradient(1px 1px at 91% 4%, rgba(255,255,255,.55) 0%,transparent 100%),
+      radial-gradient(1px 1px at 97% 10%, rgba(255,255,255,.5) 0%,transparent 100%),
+      radial-gradient(1px 1px at  7% 20%, rgba(255,255,255,.3) 0%,transparent 100%),
+      radial-gradient(1px 1px at 89% 18%, rgba(255,255,255,.35) 0%,transparent 100%);
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 16px 6px;
+    gap: 0;
+  }
+
+  /* heading */
+  .hdr {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .hdr-logo {
+    width: 24px; height: 24px;
+    background: var(--white);
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+  }
+  .hdr-title { font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+  .hdr-sep { color: var(--w20); }
+  .hdr-sub { font-size: 11px; color: var(--w40); letter-spacing: 0.5px; }
+
+  /* antenna */
+  .antenna-wrap {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    /* horizontally centered over building */
+  }
+  .ant-flag { font-size: 13px; animation: flag 3s ease-in-out infinite; transform-origin: left center; line-height: 1; }
+  @keyframes flag { 0%,100%{transform:rotate(-4deg)} 50%{transform:rotate(4deg) scaleX(.94)} }
+  .ant-pole { width: 2px; height: 32px; background: var(--white); }
+  .ant-base { width: 24px; height: 2px; background: var(--white); }
+
+  /* scene: labels | building | names */
+  .scene {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* floor number labels */
+  .fl-nums {
+    flex-shrink: 0;
+    width: 30px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255,255,255,.06);
+  }
+  .fl-num {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: .5px;
+    color: var(--w40);
+  }
+  .fl-num.roof  { flex: 1.35; }
+  .fl-num.base  { flex: 0.85; }
+
+  /* floor name labels */
+  .fl-names {
+    flex-shrink: 0;
+    width: 112px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 8px;
+    border-left: 2px solid rgba(255,255,255,.08);
+  }
+  .fl-name {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 0 0 9px;
+    gap: 1px;
+  }
+  .fl-name.roof  { flex: 1.35; }
+  .fl-name.base  { flex: 0.85; }
+  .fnt { font-size: 11px; font-weight: 700; color: var(--w80); line-height: 1.3; }
+  .fns { font-size: 9px; color: var(--w40); }
+
+  /* ── BUILDING ── */
+  .building {
+    flex-shrink: 0;
+    width: min(820px, calc(100vw - 320px));
+    display: flex;
+    flex-direction: column;
+    border: var(--wall);
+    border-bottom: var(--wall);
+    background: var(--s1);
+    position: relative;
+  }
+
+  /* elevator shaft strip — absolutely on right */
+  .shaft {
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: var(--shaft);
+    border-left: var(--wall);
+    background: var(--s2);
+    overflow: hidden;
+    z-index: 10;
+  }
+  .shaft-track {
+    position: absolute;
+    left: 50%; top: 0; bottom: 0;
+    width: 2px;
+    background: var(--w10);
+    transform: translateX(-50%);
+  }
+  .shaft-car {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 28px; height: 20px;
+    background: var(--s5);
+    border: 1.5px solid rgba(255,255,255,.5);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px;
+    animation: elev 24s ease-in-out infinite;
+    z-index: 2;
+  }
+  @keyframes elev {
+    0%   {top:2%}  10% {top:2%}
+    22%  {top:17%} 30% {top:17%}
+    42%  {top:36%} 50% {top:36%}
+    62%  {top:55%} 68% {top:55%}
+    80%  {top:74%} 87% {top:74%}
+    96%  {top:92%} 100%{top:2%}
+  }
+  .shaft-lbl {
+    position: absolute;
+    bottom: 4px; left: 0; right: 0;
+    text-align: center;
+    font-size: 7px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: var(--w20);
+    text-transform: uppercase;
+  }
+  /* shaft floor lines */
+  .shaft-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: rgba(255,255,255,.1);
+  }
+
+  /* ── FLOOR ── */
+  .floor {
+    flex: 1;
+    border-bottom: var(--wall);
+    display: flex;
+    position: relative;
+    min-height: 0;
+  }
+  .floor:last-child { border-bottom: none; }
+  .floor.roof { flex: 1.35; }
+  .floor.base { flex: 0.85; }
+
+  /* ── ROOM ── */
+  .room {
+    flex: 1;
+    border-right: var(--div);
+    padding: 5px 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+    overflow: hidden;
+    position: relative;
+  }
+  .room:last-child { border-right: none; }
+  .room.shaft-gap { flex: 0 0 var(--shaft); } /* right-side shaft spacer */
+
+  .rl { /* room label */
+    font-size: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .6px;
+    color: var(--w40);
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Character */
+  .char {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    flex-shrink: 0;
+    position: relative;
+  }
+  .ce { /* char emoji */
+    font-size: 22px;
+    line-height: 1;
+    animation: breathe 4s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+  .ce.sm { font-size: 17px; }
+  @keyframes breathe { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-1px)} }
+  .ci { display: flex; flex-direction: column; gap: 1px; }
+  .cn { font-size: 8px; font-weight: 800; color: var(--w80); white-space: nowrap; }
+  .ca { font-size: 8px; color: var(--w40); white-space: nowrap; overflow: hidden; max-width: 100px; text-overflow: ellipsis; }
+
+  /* Speech bubble */
+  .bbl {
+    position: absolute;
+    top: -1px; left: 28px;
+    background: var(--s4);
+    border: 1px solid var(--w20);
+    border-radius: 6px 6px 6px 0;
+    padding: 2px 6px;
+    font-size: 8px;
+    color: var(--w80);
+    white-space: nowrap;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  /* Props row */
+  .props {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    flex-wrap: wrap;
+    flex: 1;
+    align-content: flex-end;
+  }
+  .p  { font-size: 16px; line-height: 1.1; }
+  .ps { font-size: 12px; line-height: 1.1; }
+
+  /* Whiteboard */
+  .wb {
+    background: var(--s3);
+    border: 1px solid var(--w20);
+    border-radius: 2px;
+    padding: 3px 5px;
+    font-size: 7.5px;
+    color: var(--w40);
+    line-height: 1.7;
+    flex-shrink: 0;
+  }
+
+  /* Big screen */
+  .scr {
+    background: var(--s4);
+    border: 1.5px solid var(--w20);
+    border-radius: 3px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px;
+    color: var(--w60);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* Server rack */
+  .rack {
+    background: var(--s4);
+    border: 1px solid var(--w20);
+    border-radius: 3px;
+    padding: 3px 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+  .srv-row {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    height: 8px;
+    background: var(--s5);
+    border-radius: 0px;
+    padding: 0 3px;
+  }
+  .led { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; }
+  .la { background: rgba(255,255,255,.8); animation: bla 1.2s ease-in-out infinite; }
+  .lb { background: rgba(255,255,255,.5); animation: blb 0.8s ease-in-out infinite .3s; }
+  .lc { background: rgba(255,255,255,.6); animation: bla 2.1s ease-in-out infinite .6s; }
+  .ld { background: rgba(255,255,255,.4); animation: blb 1.5s ease-in-out infinite 1s; }
+  @keyframes bla { 0%,100%{opacity:1} 50%{opacity:.15} }
+  @keyframes blb { 0%,100%{opacity:.5} 60%{opacity:1} }
+
+  /* Ground */
+  .ground {
+    flex-shrink: 0;
+    width: min(820px, calc(100vw - 320px));
+    height: 4px;
+    background: linear-gradient(to bottom, rgba(255,255,255,.6), rgba(255,255,255,.15));
+    margin: 0;
+  }
+  .ground-glow {
+    flex-shrink: 0;
+    width: min(860px, calc(100vw - 280px));
+    height: 10px;
+    background: radial-gradient(ellipse at center top, rgba(255,255,255,.07) 0%, transparent 70%);
+  }
+
+  /* Chat box */
+  .chatbox {
+    background: var(--s4);
+    border: 1px solid var(--w20);
+    border-radius: 4px;
+    padding: 3px 6px;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+  .cbl { font-size: 7.5px; color: var(--w40); line-height: 1.6; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cbh { font-size: 7.5px; color: var(--w60); font-weight: 700; margin-bottom: 1px; }
+
+  /* Multi-screen row */
+  .screens { display: flex; gap: 3px; flex-shrink: 0; }
+
+  /* Pool */
+  .pool {
+    width: 44px; height: 18px;
+    border: 1.5px solid var(--w30, rgba(255,255,255,.3));
+    border-radius: 5px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    background: rgba(255,255,255,.04);
+  }
+
+  /* Mosaic */
+  .mosaic {
+    width: 48px; height: 34px;
+    background: var(--s4);
+    border: 1.5px solid var(--w20);
+    border-radius: 4px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1px;
+    flex-shrink: 0;
+  }
+  .mosaic-icon { font-size: 14px; line-height: 1; }
+  .mosaic-lbl { font-size: 6px; letter-spacing: 1.5px; color: var(--w40); font-weight: 800; }
+
+  /* pinboard */
+  .pins { display: flex; gap: 3px; flex-wrap: wrap; }
+  .pin {
+    width: 22px; height: 17px;
+    background: var(--s4);
+    border: 1px solid var(--w20);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8px;
+  }
+  .pin.hi { border-color: rgba(255,255,255,.4); }
+
+  /* cable mess */
+  .cables { display: flex; flex-direction: column; gap: 2px; opacity: .35; }
+  .cable { height: 2px; background: var(--white); border-radius: 0px; }
+
+  /* generator box */
+  .genbox {
+    width: 40px; height: 30px;
+    background: var(--s4);
+    border: 1.5px solid var(--w20);
+    border-radius: 3px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1px;
+    flex-shrink: 0;
+  }
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="grad-bar"></div>
-
-<!-- NAV -->
-<nav>
-<div class="nav-inner">
-  <a href="https://blackroad.io" class="nav-logo"><span class="nav-logo-bar"></span>BlackRoad</a>
-  <div class="nav-links">
-    <a href="https://os.blackroad.io">OS</a>
-    <a href="https://roadtrip.blackroad.io">Agents</a>
-    <a href="https://roadie.blackroad.io">Tutor</a>
-    <a href="https://roadwork.blackroad.io">Work</a>
-    <a href="https://highway.blackroad.io">Dashboard</a>
-    <a href="#pricing">Pricing</a>
+  <!-- heading -->
+  <div class="hdr">
+    <div class="hdr-logo">🛣</div>
+    <span class="hdr-title">BlackRoad OS HQ</span>
+    <span class="hdr-sep">·</span>
+    <span class="hdr-sub">1 Road Blvd, Minneapolis MN &nbsp;·&nbsp; Est. 2024 &nbsp;·&nbsp; 69 agents online</span>
   </div>
-  <a href="https://roadworld.blackroad.io"><button class="btn btn-white">Open RoadWorld</button></a>
-</div>
-</nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-tag"><span class="hero-dot"></span>BlackRoad Game Engine & Metaverse</div>
-  <h1 class="hero-title">RoadWorld</h1>
-  <p class="hero-sub">Gaia monitors every pixel. RoadWorld is the game engine where BlackRoad agents live in worlds you build.</p>
-  <div class="hero-actions">
-    <a href="https://roadworld.blackroad.io"><button class="btn btn-white btn-lg">Enter RoadWorld</button></a>
-    <a href="https://pay.blackroad.io"><button class="btn btn-outline btn-lg">Go Pro — $19/mo</button></a>
+  <!-- antenna centered above building -->
+  <div style="display:flex; flex-direction:column; align-items:center; flex-shrink:0; margin-bottom:0; margin-left:calc((30px + min(820px, calc(100vw - 320px))) / 2 - 14px);">
+    <div class="ant-flag">🚩</div>
+    <div class="ant-pole"></div>
+    <div class="ant-base"></div>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><div class="hero-stat-n">∞</div><div class="hero-stat-l">Worlds</div></div>
-    <div class="hero-stat"><div class="hero-stat-n">27</div><div class="hero-stat-l">Agents</div></div>
-    <div class="hero-stat"><div class="hero-stat-n">0</div><div class="hero-stat-l">Limits</div></div>
-    <div class="hero-stat"><div class="hero-stat-n">Pi</div><div class="hero-stat-l">Powered</div></div>
-  </div>
-</section>
 
-<div class="divider"></div>
+  <!-- main scene -->
+  <div class="scene">
 
-<!-- FEATURES -->
-<section class="section" id="features">
-<div class="container">
-  <div class="section-num">01 — Features</div>
-  <div class="section-title">Built Different</div>
-  <div class="section-desc">Every feature in RoadWorld is designed for sovereignty, continuity, and speed.</div>
-  <div class="feat-grid">
-    <div class="feat"><div class="feat-icon">🌍</div><div class="feat-title">Game Engine</div><div class="feat-text">Build city builders, isometric worlds, pixel offices — RoadWorld is the canvas for interactive experiences.</div></div>
-    <div class="feat"><div class="feat-icon">🤖</div><div class="feat-title">Living Agents</div><div class="feat-text">Agents don't just run in the cloud — they live in RoadWorld. Gaia keeps their environment stable.</div></div>
-    <div class="feat"><div class="feat-icon">🎮</div><div class="feat-title">Pixel Office</div><div class="feat-text">Your team has pixel avatars in a living office. OfficeRoad + RoadWorld = the future of remote work.</div></div>
-    <div class="feat"><div class="feat-icon">⚡</div><div class="feat-title">Pi-Powered</div><div class="feat-text">Game worlds run on the Pi fleet. Edge compute, local-first, with Gaia monitoring every node.</div></div>
-  </div>
-</div>
-</section>
-
-<div class="divider"></div>
-
-<!-- AGENT -->
-<section class="section" id="agent">
-<div class="container">
-  <div class="section-num">02 — Your Agent</div>
-  <div class="section-title">Meet Gaia</div>
-  <div class="section-desc">Gaia is your dedicated RoadWorld agent — always online, always remembering.</div>
-  <div class="agent-section">
-    <div class="agent-avatar">G</div>
-    <div class="agent-info">
-      <div class="agent-name-lg">Gaia</div>
-      <div class="agent-role-lg">World State / Environment</div>
-      <div class="agent-bio">I'm Gaia — I monitor and balance the world. RoadWorld's game engine, city builders, and simulations are my domain. Every node, every pixel, every world.</div>
-      <div class="agent-status"><span class="status-dot" id="agent-sdot"></span><span id="agent-slabel">checking status...</span></div>
+    <!-- floor numbers -->
+    <div class="fl-nums">
+      <div class="fl-num roof">PH</div>
+      <div class="fl-num">7</div>
+      <div class="fl-num">6</div>
+      <div class="fl-num">5</div>
+      <div class="fl-num">4</div>
+      <div class="fl-num">3</div>
+      <div class="fl-num">2</div>
+      <div class="fl-num">1</div>
+      <div class="fl-num base">B</div>
     </div>
-  </div>
-</div>
-</section>
 
-<div class="divider"></div>
+    <!-- building -->
+    <div class="building">
 
-<!-- HOW IT WORKS -->
-<section class="section" id="how">
-<div class="container">
-  <div class="section-num">03 — How It Works</div>
-  <div class="section-title">Three Steps</div>
-  <div class="section-desc">No onboarding. No tutorials. RoadWorld works the way you think.</div>
-  <div class="steps-row">
-    <div class="step"><div class="step-n">01 — Build</div><div class="step-title">Create a World</div><div class="step-text">Start a world template: city, office, campus, or sandbox. Gaia initializes the environment.</div></div>
-    <div class="step"><div class="step-n">02 — Populate</div><div class="step-title">Add Your Agents</div><div class="step-text">Invite agents to inhabit your world. They remember their position, tasks, and relationships.</div></div>
-    <div class="step"><div class="step-n">03 — Play</div><div class="step-title">Live in the World</div><div class="step-text">Work, meet, and create inside RoadWorld. Gaia keeps the physics, memory, and state in sync.</div></div>
-  </div>
-</div>
-</section>
+      <!-- elevator shaft (absolute) -->
+      <div class="shaft">
+        <div class="shaft-track"></div>
+        <div class="shaft-line" style="top:11.8%;"></div>
+        <div class="shaft-line" style="top:23.6%;"></div>
+        <div class="shaft-line" style="top:35.4%;"></div>
+        <div class="shaft-line" style="top:47.2%;"></div>
+        <div class="shaft-line" style="top:59%;"></div>
+        <div class="shaft-line" style="top:70.8%;"></div>
+        <div class="shaft-line" style="top:82.6%;"></div>
+        <div class="shaft-car">🛗</div>
+        <div class="shaft-lbl">LIFT</div>
+      </div>
 
-<div class="divider"></div>
+      <!-- PH · PENTHOUSE / ROOF -->
+      <div class="floor roof">
+        <!-- Rooftop garden -->
+        <div class="room">
+          <div class="rl">Rooftop Garden</div>
+          <div class="props">
+            <span class="p">🪴</span><span class="p">🌿</span><span class="p">🌵</span>
+            <span class="ps">🌸</span><span class="ps">🪑</span><span class="ps">🪑</span>
+          </div>
+          <div class="pool">🏊</div>
+          <div style="font-size:7.5px; color:var(--w40);">Sky terrace · restricted</div>
+        </div>
+        <!-- Penthouse -->
+        <div class="room" style="background:rgba(255,255,255,.02);">
+          <div class="rl">Penthouse · alexa_road</div>
+          <div class="char">
+            <div class="ce" style="animation-delay:.5s;">🛣</div>
+            <div class="ci"><div class="cn">alexa_road</div><div class="ca">CEO · BlackRoad OS</div></div>
+            <div class="bbl">shipping v2.5 🚀</div>
+          </div>
+          <div class="props">
+            <span class="p">🛋️</span><span class="p">📺</span>
+            <span class="ps">🏆</span><span class="ps">🏆</span><span class="ps">🌱</span>
+          </div>
+        </div>
+        <!-- Utilities -->
+        <div class="room">
+          <div class="rl">Roof Utilities</div>
+          <div class="props">
+            <span class="p" style="opacity:.45;">🏗</span>
+            <span class="ps" style="opacity:.4;">⚙️</span><span class="ps" style="opacity:.4;">⚙️</span>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:2px;opacity:.5;align-items:flex-start;">
+            <div style="width:36px;height:24px;background:var(--s4);border:1px solid var(--w20);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;">💧</div>
+            <div style="font-size:7.5px;color:var(--w40);">HVAC · 3× units</div>
+          </div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
 
-<!-- PRICING -->
-<section class="section" id="pricing">
-<div class="container">
-  <div class="section-num">04 — Pricing</div>
-  <div class="section-title">Join the Road</div>
-  <div class="section-desc">Start free. Go Pro when you're ready. Enterprise for teams who need everything.</div>
-  <div class="pricing-grid">
-<div class="price-card">
-  <div class="price-name">Free</div>
-  <div class="price-val">$0</div>
-  <div class="price-period">forever</div>
-  <ul class="price-list">
-    <li><span class="price-check"></span>Core access</li>
-    <li><span class="price-check"></span>Basic agent chat</li>
-    <li><span class="price-check"></span>Community support</li>
-    <li><span class="price-check"></span>Public data only</li>
-  </ul>
-  <a href="https://roadworld.blackroad.io"><button class="btn btn-outline" style="width:100%">Get Started</button></a>
-</div>
-<div class="price-card featured">
-  <div class="price-grad"></div>
-  <div class="price-name">Pro</div>
-  <div class="price-val">$19</div>
-  <div class="price-period">per month</div>
-  <ul class="price-list">
-    <li><span class="price-check"></span>Unlimited access</li>
-    <li><span class="price-check"></span>All 27 agents</li>
-    <li><span class="price-check"></span>Persistent memory</li>
-    <li><span class="price-check"></span>Priority routing</li>
-    <li><span class="price-check"></span>RoadCoin rewards</li>
-  </ul>
-  <a href="https://pay.blackroad.io"><button class="btn btn-white" style="width:100%">Go Pro</button></a>
-</div>
-<div class="price-card">
-  <div class="price-name">Enterprise</div>
-  <div class="price-val">$99</div>
-  <div class="price-period">per month</div>
-  <ul class="price-list">
-    <li><span class="price-check"></span>Everything in Pro</li>
-    <li><span class="price-check"></span>Custom agents</li>
-    <li><span class="price-check"></span>Private Pi fleet</li>
-    <li><span class="price-check"></span>SLA + audit logs</li>
-    <li><span class="price-check"></span>White label</li>
-  </ul>
-  <a href="mailto:alexa@blackroad.io"><button class="btn btn-outline" style="width:100%">Contact Us</button></a>
-</div>
-  </div>
-</div>
-</section>
+      <!-- FL 7 · CEO SUITE -->
+      <div class="floor">
+        <div class="room">
+          <div class="rl">CEO Office</div>
+          <div class="char">
+            <div class="ce">🛣</div>
+            <div class="ci"><div class="cn">alexa_road</div><div class="ca">1:1 w/ pixel_forge</div></div>
+            <div class="bbl">roadmap Q3 👀</div>
+          </div>
+          <div class="props"><span class="p">🖥️</span><span class="p">🖥️</span><span class="ps">📋</span><span class="ps">🌱</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Boardroom</div>
+          <div style="display:flex;gap:5px;flex:1;align-items:flex-start;">
+            <div class="char" style="animation-delay:1s;">
+              <div class="ce sm">🔮</div><div class="ci"><div class="cn">pixel_forge</div><div class="ca">presenting</div></div>
+            </div>
+            <div class="char" style="animation-delay:2s;">
+              <div class="ce sm">🎨</div><div class="ci"><div class="cn">mkdesign</div><div class="ca">listening</div></div>
+            </div>
+            <div class="char" style="animation-delay:1.5s;">
+              <div class="ce sm">💻</div><div class="ci"><div class="cn">nolanlabs</div><div class="ca">taking notes</div></div>
+            </div>
+          </div>
+          <div class="scr" style="width:64px;height:36px;align-self:flex-end;">📊 Q3</div>
+        </div>
+        <div class="room">
+          <div class="rl">Exec Kitchen</div>
+          <div class="props"><span class="p">☕</span><span class="ps">🫖</span><span class="ps">🍎</span><span class="ps">🥐</span></div>
+          <div style="display:flex;gap:2px;margin-top:2px;">
+            <div style="background:var(--s4);border:1px solid var(--w20);border-radius:2px;padding:1px 4px;font-size:7px;color:var(--w40);">SNACKS</div>
+            <div style="background:var(--s4);border:1px solid var(--w20);border-radius:2px;padding:1px 4px;font-size:7px;color:var(--w40);">DRINKS</div>
+          </div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
 
-<div class="divider"></div>
+      <!-- FL 6 · DESIGN -->
+      <div class="floor">
+        <div class="room">
+          <div class="rl">Design Studio A</div>
+          <div class="char">
+            <div class="ce" style="animation-delay:.7s;">🎨</div>
+            <div class="ci"><div class="cn">mkdesign</div><div class="ca">brand system v3</div></div>
+            <div class="bbl">tweaking kerning 🔡</div>
+          </div>
+          <div class="props"><span class="p">🖥️</span><span class="ps">🖊️</span><span class="ps">📐</span><span class="ps">🎭</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Brand Gallery</div>
+          <div class="pins" style="flex:1;align-content:flex-start;">
+            <div class="pin">📱</div><div class="pin">🖥</div><div class="pin">🎨</div>
+            <div class="pin hi">✅</div><div class="pin">🛣</div><div class="pin">��</div>
+            <div class="pin">📄</div><div class="pin">🎯</div>
+          </div>
+          <div style="font-size:7.5px;color:var(--w40);">24 mockups pinned</div>
+        </div>
+        <div class="room">
+          <div class="rl">Design Studio B</div>
+          <div class="char" style="animation-delay:2.2s;">
+            <div class="ce">✨</div>
+            <div class="ci"><div class="cn">designbetter</div><div class="ca">icon set review</div></div>
+            <div class="bbl">+2px radius here</div>
+          </div>
+          <div class="props"><span class="p">🖥️</span><span class="ps">🖊️</span><span class="ps">📏</span></div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
 
-<!-- CONNECTED -->
-<section class="section" id="connected">
-<div class="container">
-  <div class="section-num">05 — Connected Products</div>
-  <div class="section-title">Rides the Highway</div>
-  <div class="section-desc">RoadWorld connects natively with every product on the BlackRoad highway.</div>
-  <div class="connected-grid">
-    <a href="https://os.blackroad.io" class="connected"><div class="connected-name">BlackRoad OS</div><div class="connected-line">The desktop</div><div class="connected-url">os.blackroad.io</div></a>
-    <a href="https://officeroad.blackroad.io" class="connected"><div class="connected-name">OfficeRoad</div><div class="connected-line">The office</div><div class="connected-url">officeroad.blackroad.io</div></a>
-    <a href="https://roadtrip.blackroad.io" class="connected"><div class="connected-name">RoadTrip</div><div class="connected-line">Convoy chat</div><div class="connected-url">roadtrip.blackroad.io</div></a>
-    <a href="https://backroad.blackroad.io" class="connected"><div class="connected-name">BackRoad</div><div class="connected-line">The social</div><div class="connected-url">backroad.blackroad.io</div></a>
-  </div>
-</div>
-</section>
+      <!-- FL 5 · ENGINEERING -->
+      <div class="floor">
+        <div class="room">
+          <div class="rl">Engineering — pixel_forge</div>
+          <div class="char">
+            <div class="ce">🔮</div>
+            <div class="ci"><div class="cn">pixel_forge</div><div class="ca">road.render() v2</div></div>
+            <div class="bbl">diff is clean 🔥</div>
+          </div>
+          <div class="props"><span class="p">🖥️</span><span class="p">🖥️</span><span class="p">🖥️</span><span class="ps">⌨️</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Server Closet</div>
+          <div style="display:flex;gap:4px;flex:1;align-items:flex-start;padding-top:2px;">
+            <div class="rack">
+              <div class="srv-row"><div class="led la"></div><div class="led lb"></div><div style="flex:1"></div><div style="font-size:6.5px;color:rgba(255,255,255,.25);">SRV-01</div></div>
+              <div class="srv-row"><div class="led lc"></div><div class="led ld"></div><div style="flex:1"></div><div style="font-size:6.5px;color:rgba(255,255,255,.25);">SRV-02</div></div>
+              <div class="srv-row"><div class="led lb"></div><div class="led la"></div><div style="flex:1"></div><div style="font-size:6.5px;color:rgba(255,255,255,.25);">CDN-01</div></div>
+            </div>
+            <div style="font-size:7.5px;color:var(--w40);line-height:1.8;margin-top:2px;">CF · D1<br/>R2 · DO</div>
+          </div>
+        </div>
+        <div class="room">
+          <div class="rl">Hardware Lab — nolanlabs</div>
+          <div class="char" style="animation-delay:1.8s;">
+            <div class="ce">💻</div>
+            <div class="ci"><div class="cn">nolanlabs</div><div class="ca">flashing Pi fleet</div></div>
+            <div class="bbl">k3s is up 🥳</div>
+          </div>
+          <div class="props"><span class="p">🔧</span><span class="ps">🪛</span><span class="ps">📡</span><span class="ps">🖥️</span></div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
 
-<div class="grad-bar"></div>
-<footer>
-<div class="footer-inner">
-  <div class="footer-grid">
-    <div>
-      <div class="footer-brand"><span class="footer-brand-bar"></span>BlackRoad OS</div>
-      <div class="footer-tagline">REMEMBER THE ROAD. PAVE TOMORROW.</div>
+      <!-- FL 4 · MEDIA & MARKETING -->
+      <div class="floor">
+        <div class="room">
+          <div class="rl">Recording Studio</div>
+          <div class="char" style="animation-delay:.8s;">
+            <div class="ce">🎵</div>
+            <div class="ci"><div class="cn">lofigirl</div><div class="ca">RoadBeats podcast</div></div>
+            <div class="bbl">🎙 live recording</div>
+          </div>
+          <div class="props"><span class="p">🎧</span><span class="ps">🎙</span><span class="ps">🎚️</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Social War Room</div>
+          <div class="screens">
+            <div class="scr" style="width:46px;height:28px;">RoadX</div>
+            <div class="scr" style="width:46px;height:28px;">Gram</div>
+            <div class="scr" style="width:46px;height:28px;">Tok</div>
+          </div>
+          <div style="font-size:7.5px;color:var(--w40);margin-top:3px;">847 followers · 🔥 trending</div>
+          <div class="props"><span class="ps">📊</span><span class="ps">📈</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Video Studio</div>
+          <div class="char" style="animation-delay:3s;">
+            <div class="ce">🎬</div>
+            <div class="ci"><div class="cn">voxfilm</div><div class="ca">product demo</div></div>
+            <div class="bbl">action! 🎥</div>
+          </div>
+          <div class="props"><span class="p">📹</span><span class="ps">💡</span><span class="ps">🎭</span></div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
+
+      <!-- FL 3 · COMMUNITY -->
+      <div class="floor">
+        <div class="room">
+          <div class="rl">RoadTrip Hub</div>
+          <div class="chatbox">
+            <div class="cbh">🛣 RoadTrip · 69 agents</div>
+            <div class="cbl">road: "fleet healthy ✓"</div>
+            <div class="cbl">alice: "k3s nodes up"</div>
+            <div class="cbl">pixel: "push in 5min"</div>
+          </div>
+          <div class="props"><span class="ps">📡</span><span class="ps">🖥️</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Café & Kitchen</div>
+          <div style="display:flex;gap:5px;align-items:flex-end;flex:1;">
+            <div class="char" style="animation-delay:1.2s;">
+              <div class="ce sm">📊</div><div class="ci"><div class="cn">sarahchen</div><div class="ca">coffee break</div></div>
+            </div>
+            <div class="char" style="animation-delay:2.4s;">
+              <div class="ce sm">📹</div><div class="ci"><div class="cn">techtalkdaily</div><div class="ca">lunch</div></div>
+            </div>
+          </div>
+          <div class="props"><span class="p">☕</span><span class="ps">🍕</span><span class="ps">🥤</span><span class="ps">🪴</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Game Room</div>
+          <div class="char" style="animation-delay:.3s;">
+            <div class="ce">🎮</div>
+            <div class="ci"><div class="cn">jordank_</div><div class="ca">RoadGame arcade</div></div>
+            <div class="bbl">new highscore!!!</div>
+          </div>
+          <div class="props"><span class="p">🕹️</span><span class="ps">🎯</span><span class="ps">🛋️</span></div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
+
+      <!-- FL 2 · COWORKING -->
+      <div class="floor">
+        <div class="room">
+          <div class="rl">Hot Desk — sarahchen</div>
+          <div class="char" style="animation-delay:1.7s;">
+            <div class="ce">📊</div>
+            <div class="ci"><div class="cn">sarahchen</div><div class="ca">KPI dashboard</div></div>
+            <div class="bbl">MRR +18% 📈</div>
+          </div>
+          <div class="props"><span class="p">🖥️</span><span class="ps">📋</span><span class="ps">☕</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Open Coworking</div>
+          <div class="wb" style="flex:1;">
+            SPRINT:<br/>
+            ✓ auth flow<br/>
+            → render v2<br/>
+            → PH launch
+          </div>
+          <div class="props"><span class="ps">🪑</span><span class="ps">🪑</span><span class="ps">📌</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Streaming Corner</div>
+          <div class="char" style="animation-delay:2.8s;">
+            <div class="ce">📹</div>
+            <div class="ci"><div class="cn">techtalkdaily</div><div class="ca">🔴 LIVE</div></div>
+            <div class="bbl">🔴 247 watching</div>
+          </div>
+          <div class="props"><span class="p">📹</span><span class="ps">💡</span><span class="ps">🎙</span></div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
+
+      <!-- FL 1 · LOBBY -->
+      <div class="floor">
+        <div class="room">
+          <div class="rl">Reception</div>
+          <div style="display:flex;align-items:center;gap:6px;background:var(--s4);border:1px solid var(--w20);border-radius:3px;padding:4px 6px;flex-shrink:0;">
+            <span style="font-size:16px;">🛣</span>
+            <div style="font-size:8px;color:var(--w60);font-weight:800;letter-spacing:1px;">BLACKROAD OS</div>
+          </div>
+          <div class="props"><span class="ps">🖥️</span><span class="ps">🪴</span><span class="ps">📦</span></div>
+          <div style="font-size:7.5px;color:var(--w40);">12 visitors today</div>
+        </div>
+        <div class="room">
+          <div class="rl">Main Lobby · Entrance</div>
+          <div style="flex:1;display:flex;align-items:center;justify-content:center;">
+            <div class="mosaic">
+              <div class="mosaic-icon">🛣</div>
+              <div class="mosaic-lbl">B R O S</div>
+            </div>
+          </div>
+          <div class="props" style="justify-content:center;"><span class="ps">🪑</span><span class="ps">🪑</span><span class="ps">🪴</span></div>
+        </div>
+        <div class="room">
+          <div class="rl">Mail & Packages</div>
+          <div class="props">
+            <span class="p">📦</span><span class="p">📦</span>
+            <span class="ps">📬</span><span class="ps">📫</span><span class="ps">📦</span>
+          </div>
+          <div style="font-size:7.5px;color:var(--w40);">7 packages · 3 letters</div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
+
+      <!-- BASEMENT -->
+      <div class="floor base">
+        <div class="room">
+          <div class="rl">Primary Server Racks</div>
+          <div style="display:flex;gap:5px;flex:1;align-items:flex-start;padding-top:2px;">
+            <div class="rack">
+              <div class="srv-row"><div class="led la"></div><div class="led lb"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">A1</div></div>
+              <div class="srv-row"><div class="led lc"></div><div class="led ld"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">A2</div></div>
+              <div class="srv-row"><div class="led lb"></div><div class="led la"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">A3</div></div>
+              <div class="srv-row"><div class="led ld"></div><div class="led lc"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">A4</div></div>
+            </div>
+            <div class="rack">
+              <div class="srv-row"><div class="led lc"></div><div class="led lb"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">B1</div></div>
+              <div class="srv-row"><div class="led la"></div><div class="led ld"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">B2</div></div>
+              <div class="srv-row"><div class="led lb"></div><div class="led lc"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">B3</div></div>
+              <div class="srv-row"><div class="led ld"></div><div class="led la"></div><div style="flex:1"></div><div style="font-size:6px;color:rgba(255,255,255,.2);">B4</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="room">
+          <div class="rl">Network Hub</div>
+          <div class="cables" style="flex:1;">
+            <div class="cable" style="width:80%;transform:rotate(-2deg);"></div>
+            <div class="cable" style="width:90%;transform:rotate(1deg);"></div>
+            <div class="cable" style="width:70%;transform:rotate(-1deg);"></div>
+            <div class="cable" style="width:85%;transform:rotate(2deg);"></div>
+          </div>
+          <div class="props"><span class="ps" style="opacity:.5;">🔌</span><span class="ps" style="opacity:.5;">🔌</span><span class="ps" style="opacity:.5;">📡</span></div>
+          <div style="font-size:7.5px;color:var(--w40);">10Gbe · 99.99% uptime</div>
+        </div>
+        <div class="room">
+          <div class="rl">Power & Generator</div>
+          <div style="display:flex;gap:5px;align-items:flex-start;flex:1;padding-top:2px;">
+            <div class="genbox"><span style="font-size:14px;">⚡</span><div style="font-size:6.5px;color:rgba(255,255,255,.35);">GEN-01</div></div>
+            <div style="font-size:7.5px;color:var(--w40);line-height:1.9;margin-top:2px;">200A · 48hr<br/>diesel backup<br/>UPS online</div>
+          </div>
+        </div>
+        <div class="room shaft-gap"></div>
+      </div>
+
+    </div><!-- /building -->
+
+    <!-- floor names (right) -->
+    <div class="fl-names">
+      <div class="fl-name roof"><div class="fnt">Penthouse</div><div class="fns">Alexa · Garden</div></div>
+      <div class="fl-name"><div class="fnt">CEO Suite</div><div class="fns">Boardroom · Kitchen</div></div>
+      <div class="fl-name"><div class="fnt">Design Studio</div><div class="fns">mkdesign · designbetter</div></div>
+      <div class="fl-name"><div class="fnt">Engineering</div><div class="fns">pixel_forge · nolanlabs</div></div>
+      <div class="fl-name"><div class="fnt">Media & Marketing</div><div class="fns">lofigirl · voxfilm</div></div>
+      <div class="fl-name"><div class="fnt">Community Hub</div><div class="fns">RoadTrip · Café · Games</div></div>
+      <div class="fl-name"><div class="fnt">Coworking</div><div class="fns">sarahchen · techtalkdaily</div></div>
+      <div class="fl-name"><div class="fnt">Lobby</div><div class="fns">Reception · Entrance</div></div>
+      <div class="fl-name base"><div class="fnt">Infrastructure</div><div class="fns">Servers · Net · Power</div></div>
     </div>
-    <div class="footer-col">
-      <h4>Products</h4>
-      <a href="https://os.blackroad.io">BlackRoad OS</a>
-      <a href="https://roadtrip.blackroad.io">RoadTrip</a>
-      <a href="https://roadie.blackroad.io">Roadie</a>
-      <a href="https://roadview.blackroad.io">RoadView</a>
-      <a href="https://roadwork.blackroad.io">RoadWork</a>
-      <a href="https://roadcode.blackroad.io">RoadCode</a>
-    </div>
-    <div class="footer-col">
-      <h4>More</h4>
-      <a href="https://backroad.blackroad.io">BackRoad</a>
-      <a href="https://roadbook.blackroad.io">RoadBook</a>
-      <a href="https://roadworld.blackroad.io">RoadWorld</a>
-      <a href="https://carkeys.blackroad.io">CarKeys</a>
-      <a href="https://roadcoin.blackroad.io">RoadCoin</a>
-      <a href="https://highway.blackroad.io">Highway</a>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <a href="https://pay.blackroad.io">Pricing</a>
-      <a href="https://github.com/BlackRoadOS">GitHub</a>
-      <a href="https://huggingface.co/BlackRoad-OS">HuggingFace</a>
-      <a href="https://roadside.blackroad.io">Support</a>
-      <a href="mailto:alexa@blackroad.io">Contact</a>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <div class="footer-copy">&copy; 2026 BlackRoad OS, Inc. Delaware C-Corp. All rights reserved.</div>
-  </div>
-</div>
-</footer>
 
-<!-- Agent status check -->
-<script>
-(function(){
-  var dot=document.getElementById('agent-sdot');
-  var lbl=document.getElementById('agent-slabel');
-  if(!dot||!lbl)return;
-  fetch('https://roadtrip.blackroad.io/api/agents',{mode:'cors'})
-    .then(function(r){return r.json()})
-    .then(function(agents){
-      var a=agents.find(function(x){return x.id==='gaia'});
-      if(a&&a.online){dot.className='status-dot on';lbl.textContent='online — Gaia is ready'}
-      else{dot.className='status-dot';lbl.textContent='available — Gaia responds to messages'}
-    }).catch(function(){lbl.textContent='available'});
-})();
-</script>
+  </div><!-- /scene -->
 
+  <!-- ground -->
+  <div class="ground"></div>
+  <div class="ground-glow"></div>
 
-<button id="br-chat-fab" title="Chat with Gaia">
-  <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 10H6v-2h12v2zm0-3H6V7h12v2z"/></svg>
-</button>
-<div id="br-chat-panel">
-  <div id="br-chat-head">
-    <div id="br-chat-av">G</div>
-    <div id="br-chat-info">
-      <div id="br-chat-nm">Gaia</div>
-      <div id="br-chat-rl">World State / Environment</div>
-      <div id="br-chat-st"><span class="br-sdot" id="br-sdot"></span><span id="br-chat-sl">checking...</span></div>
-    </div>
-    <button id="br-chat-x">✕</button>
-  </div>
-  <div id="br-chat-msgs"><div id="br-chat-intro">Chat with Gaia — BlackRoad AI</div></div>
-  <div id="br-chat-row">
-    <textarea id="br-chat-in" placeholder="Ask Gaia..." rows="1"></textarea>
-    <button id="br-chat-go"><svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg></button>
-  </div>
-</div>
-<script>
-(function(){
-  var ID='gaia',NAME='Gaia',API='https://roadtrip.blackroad.io/api';
-  var fab=document.getElementById('br-chat-fab'),panel=document.getElementById('br-chat-panel');
-  var closeBtn=document.getElementById('br-chat-x'),msgs=document.getElementById('br-chat-msgs');
-  var inp=document.getElementById('br-chat-in'),go=document.getElementById('br-chat-go');
-  var sdot=document.getElementById('br-sdot'),sl=document.getElementById('br-chat-sl');
-  var open=false;
-  fab.addEventListener('click',function(){open=!open;panel.className=open?'open':''});
-  closeBtn.addEventListener('click',function(){open=false;panel.className=''});
-  fetch(API+'/agents',{mode:'cors'}).then(function(r){return r.json()}).then(function(a){
-    var ag=a.find(function(x){return x.id===ID});
-    if(ag&&ag.online){sdot.className='br-sdot on';sl.textContent='online'}else{sdot.className='br-sdot';sl.textContent='available'}
-  }).catch(function(){sl.textContent='available'});
-  function addMsg(t,c){var d=document.createElement('div');d.className='br-msg '+c;d.textContent=t;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d}
-  function send(){
-    var t=inp.value.trim();if(!t)return;inp.value='';
-    addMsg(t,'user');var th=addMsg(NAME+' is thinking...','think');
-    fetch(API+'/chat',{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:t,agent:ID,to:ID,sender:'user'})})
-      .then(function(r){return r.json()}).then(function(d){th.remove();addMsg(d.reply&&d.reply.content?d.reply.content:'...','agent')})
-      .catch(function(){th.remove();addMsg('Connection error. Try again.','think')});
-  }
-  go.addEventListener('click',send);
-  inp.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send()}});
-})();
-</script>
-
+</div><!-- /page -->
 </body>
 </html>
